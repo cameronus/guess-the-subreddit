@@ -1,0 +1,15 @@
+{
+  "name": "guess-the-subreddit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cameron Jones",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "express": "^4.16.2"
+  }
+}
