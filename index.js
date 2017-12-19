@@ -6,11 +6,10 @@ const app = express()
 const port = 3000
 const approved_domains = ['i.imgur.com', 'i.redd.it']
 
+app.use(express.static('static'))
+
 app.get('/', (req, res) => {
-  // main page & get current content & hash sensitive data & send to client
-  res.end('test')
-
-
+  res.sendFile(path.join(__dirname + '/index.html'))
 })
 
 app.get('/api', (req, res) => {
