@@ -19,6 +19,7 @@ h1 {
   font-weight: 900;
   color: #f0f0f0;
   margin-bottom: -5px;
+  letter-spacing: .5px;
 }
 h2 {
   font-family: 'Lato', sans-serif;
@@ -71,8 +72,12 @@ nav {
   margin: 0px auto;
   margin-top: 12vh;
   width: 400px;
-  display: flex;
-  justify-content: center;
+  max-width: 70vw;
+  height: 600px;
+  background: black;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
 }
 #display {
   margin-top: 45%;
@@ -84,6 +89,7 @@ nav {
   letter-spacing: 1.5px;
   color: white;
   cursor: pointer;
+  display: none;
   background: #0a4ad3; /* Old browsers */
   background: -moz-linear-gradient(45deg, #0a4ad3 0%, #76eddb 87%, #76eddb 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(45deg, #0a4ad3 0%,#76eddb 87%,#76eddb 100%); /* Chrome10-25,Safari5.1-6 */
@@ -105,12 +111,41 @@ nav {
 #display:focus {
   outline: none;
 }
-#post {
-  width: 400px;
-  height: 500px;
+#img {
+  width: 100%;
+}
+#title {
+  text-shadow: 0px 1px 2px rgba(150, 150, 150, 0.6);
+  margin-left: 10px;
+}
+#title-bar {
+  width: 100%;
+  height: 100px;
   background-color: white;
-  box-shadow: rgba(15, 15, 15, 0.1) 0px 2px 2px,
-              rgba(15, 15, 15, 0.1) 0px 4px 4px,
-              rgba(15, 15, 15, 0.1) 0px 8px 8px;
-  display: none;
+  bottom: 0px;
+  position: absolute;
+  padding: 0px;
+  vertical-align: top;
+}
+#input-bar {
+  margin: 0px;
+  padding: 0px;
+}
+#guess {
+  width: 100%;
+  height: 30px;
+  bottom: 0px;
+  position: absolute;
+  background-color: rgba(48, 48, 48, .3);
+  border: 0px;
+  margin: 0;
+  padding-left: 10px;
+}
+#check {
+  width: 20px;
+  height: 30px;
+  margin-left: -20px;
+  display: inline-block;
+  cursor: pointer;
+  background-color: blue;
 }

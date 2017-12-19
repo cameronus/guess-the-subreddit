@@ -16,10 +16,15 @@
       <h2 id="score">Score: <span id="score-number">0</span></h2>
     </nav>
     <div id="focus-wrapper">
-      <button id="display" onclick="display()">START</button>
-      <button id="check" onclick="verify()">Guess</button>
-      <input id="guess" type="text" placeholder="Enter your guess here">
-      <img src="" id="img">
+      <img src="img/test.jpg" id="img">
+      <div id="title-bar">
+        <h2 id="title">Title here...</h2>
+        <button id="display" onclick="display()">START</button>
+        <div id="input-bar">
+          <input type="text" value="/r/" class="text" id="guess">
+          <span id="check"></span>
+        </div>
+      </div>
     </div>
   </body>
 </html>
