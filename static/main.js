@@ -42,7 +42,7 @@ function verify() {
   const actual_hash = posts[current - 1].subreddit
   const hash = new jsSHA('SHA-256', 'TEXT')
   hash.update(input)
-  const guess = hash.getHash('HEX')
+  const guess = hash.getHash('HEX').toLowerCase()
   if (actual_hash == guess) {
     alert('Correct!')
     display()
