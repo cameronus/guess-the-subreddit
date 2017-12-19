@@ -2,12 +2,26 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Guess the Subreddit</title>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="/main.js"></script>
-    <link rel="stylesheet" href="/master.css">
+      <title>Guess the Subreddit</title>
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="/sha256.js"></script>
+      <script src="/main.js"></script>
+      <link rel="stylesheet" href="master.css">
+    <link rel="icon" type="image/png" href="img/icon.png">
   </head>
-  <body>
-    <h1>Guess the Subreddit</h1>
+  <body lang="en">
+    <nav>
+      <a id="home" href="index.html"><h1>Guess the Subreddit</h1></a>
+      <h2 id="score">Score: 0</h2>
+    </nav>
+
+
+    <div id="focus-wrapper">
+      <button id="display" onclick="display();">START</button>
+      <div id="focus"> <!-- Display after pressing START -->
+        <div id="post"></div>
+        <button id="check" onclick="verify()">Guess</button>
+        <input id="guess" type="text" placeholder="Enter your guess here">
+      </div>
   </body>
 </html>

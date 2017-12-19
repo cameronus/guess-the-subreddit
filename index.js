@@ -6,7 +6,8 @@ const app = express()
 
 const port = 3000
 const posts_per_game = 10
-const approved_domains = ['i.imgur.com', 'i.redd.it']
+const approved_domains = ['i.imgur.com'/*, 'i.redd.it'*/]
+const approved_ext = ['jpg', 'png', 'gif']
 
 app.use(express.static('static'))
 
@@ -21,9 +22,11 @@ app.get('/api', (req, res) => {
     for (const post_object of response.data.data.children) {
       const post = post_object.data
       const domain = post.domain
-      if (!post.over_18 && approved_domains.indexOf(domain) > -1) {
-        const url = post.url
-        const subreddit = post.subreddit
+      let url = post.url
+      if (!post.over_18 && approved_domains.indexOf(domain) > -1 && approved_ext.indexOf(url.substring(url.length - 3)) > -1) {
+        const subreddit = post.subreddit.toLowerCase()
+        if (domain == 'i.imgur.com') url = url.substring(0, url.length - 4) + 'h' + url.substring(url.length - 4)
+        // if (domain == 'i.redd.it') url = url
         // const title = post.title
         // const time_posted = post.created_utc
         // const score = post.score
@@ -44,6 +47,7 @@ app.get('/api', (req, res) => {
     })
   })
   .then(() => {
+    if (posts.length < 10) console.log('go to second page')
     return res.json({
       error: false,
       data: posts
