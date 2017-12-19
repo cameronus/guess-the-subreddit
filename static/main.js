@@ -1,13 +1,16 @@
-download()
+$(document).ready(() => {
+  download((err, data) => {
+    if (err) return alert('Error!')
+    
+  })
+})
 
-function download() {
+function download(cb) {
   $.ajax({
     type: 'get',
     url: '/api',
-    success: response => {
-      console.log(response)
-    },
-    error: error => console.error(error)
+    success: response => cb(null, response.data),
+    error: error => cb(true, null)
   })
 }
 
