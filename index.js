@@ -16,10 +16,25 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api', (req, res) => {
-  let posts = []
-  axios.get('https://www.reddit.com/.json')
+  getPosts([], '', (err, posts) => {
+    if (err) {
+      return res.json({
+        error: true
+      })
+    }
+    return res.json({
+      error: false,
+      data: posts
+    })
+  })
+})
+
+async function getPosts(posts, after, cb) {
+  axios.get('https://www.reddit.com/.json' + after)
   .then(response => {
-    for (const post_object of response.data.data.children) {
+    const page = response.data.data
+    after = '?after=' + page.after
+    for (const post_object of page.children) {
       const post = post_object.data
       const domain = post.domain
       let url = post.url
@@ -31,28 +46,19 @@ app.get('/api', (req, res) => {
         // const time_posted = post.created_utc
         // const score = post.score
         // console.log(title, subreddit, url, (new Date(time_posted * 1000)).toLocaleString('en-US'), score)
-        if (posts.length < posts_per_game) {
-          posts.push({
-            subreddit: crypto.createHash('sha256').update(subreddit).digest('hex'),
-            url: url
-          })
-        }
+        posts.push({
+          subreddit: crypto.createHash('sha256').update(subreddit).digest('hex'),
+          url: url
+        })
+        if (posts.length == posts_per_game) return posts
       }
     }
   })
-  .catch(error => {
-    console.log(error)
-    return res.json({
-      error: true
-    })
-  })
+  .catch(error => cb(true, null))
   .then(() => {
-    if (posts.length < 10) console.log('go to second page')
-    return res.json({
-      error: false,
-      data: posts
-    })
+    if (posts.length == posts_per_game) cb(null, posts)
+    return getPosts(posts, after, cb)
   })
-})
+}
 
 app.listen(port, () => console.log('Listening on port 3000.'))
