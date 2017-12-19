@@ -4,6 +4,7 @@ let current = 0
 $(document).ready(() => {
   // begin loading spinner
   $('#guess').hide()
+  $('#check').hide()
   download((err, data) => {
     // end loading spinner
     if (err) {
@@ -27,14 +28,26 @@ function display() {
   if (current == posts.length) return alert('Game over!')
   $('#img').attr('src', posts[current].url)
   // spinner for image loading?
-  if (current == 0) $('#button').html('Next')
+  if (current == 0) {
+    $('#display').html('Skip')
+    $('#guess').show()
+    $('#check').show()
+  }
   current++
 }
 
 function verify() {
-  if (posts[current - 1] == (new jsSHA('SHA-256', 'TEXT')).update($('#guess').val()).getHash('HEX')) {
-
+  const input = $('#guess').val()
+  if (input == '') return alert('Enter a guess!')
+  const actual_hash = posts[current - 1].subreddit
+  const hash = new jsSHA('SHA-256', 'TEXT')
+  hash.update(input)
+  const guess = hash.getHash('HEX')
+  if (actual_hash == guess) {
+    alert('Correct!')
+    display()
   } else {
-
+    alert('Incorrect!')
   }
+  $('#guess').val('')
 }
