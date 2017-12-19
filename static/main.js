@@ -23,13 +23,18 @@ function download(cb) {
 }
 
 function display() {
-  if (!posts) return alert('Still loading!')
+  if (posts.length == 0) return alert('Still loading!')
   if (current == posts.length) return alert('Game over!')
   $('#img').attr('src', posts[current].url)
+  // spinner for image loading?
   if (current == 0) $('#button').html('Next')
   current++
 }
 
 function verify() {
+  if (posts[current - 1] == (new jsSHA('SHA-256', 'TEXT')).update($('#guess').val()).getHash('HEX')) {
 
+  } else {
+
+  }
 }
