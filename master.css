@@ -65,7 +65,7 @@ nav {
 
 #focus-wrapper {
   margin: 0px auto;
-  margin-top: 8vh;
+  margin-top: 7.5vh;
   justify-content: center;
   display: flex;
 }
@@ -73,7 +73,7 @@ nav {
 #focus {
   min-width: 20px;
   min-height: 20px;
-  display: inline-block;
+  max-height: 600px;
   position: relative;
   border-radius: 5px;
   overflow: hidden;
@@ -124,19 +124,22 @@ nav {
 }
 
 #img {
-  height: 600px;
+  max-height: 490px;
   object-fit: contain;
+  display: block;
 }
 
 #title-bar {
   width: 100%;
   bottom: 0px;
-  position: absolute;
   padding-top: 3px;
-  padding-bottom: 35px;
   vertical-align: top;
   overflow: hidden;
   z-index: 100;
+  display: block;
+  -webkit-box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.2);
 }
 #title {
   text-shadow: 0px 1px 12px rgba(150, 150, 150, 0.1);
@@ -149,7 +152,7 @@ nav {
   position: absolute;
   top: -100%;
   left: -25%;
-  filter: blur(20px) saturate(250%);
+  filter: blur(50px) saturate(400%);
   width: 150%;
   height: 500%;
   z-index: -1;
@@ -158,7 +161,6 @@ nav {
   margin: 0px;
   padding: 0px;
   display: flex;
-  position: absolute;
   bottom: 0px;
   width: 100%;
   z-index: 200;
