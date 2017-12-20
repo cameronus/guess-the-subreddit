@@ -5,13 +5,13 @@ $(document).ready(() => {
   // begin loading spinner
   // $('#guess').hide()
   // $('#check').hide()
-  download((err, data) => {
-    // end loading spinner
-    if (err) {
-      return alert('Error!')
-    }
-    posts = data
-  })
+  // download((err, data) => {
+  //   // end loading spinner
+  //   if (err) {
+  //     return alert('Error!')
+  //   }
+  //   posts = data
+  // })
 })
 
 function download(cb) {

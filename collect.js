@@ -14,11 +14,15 @@ mongoose.connect('mongodb://localhost/guess-the-subreddit')
 collect(30)
 
 function collect(pages) {
-  collect_posts(pages, '', 0, count => {
-    console.log(count + ' posts added to the database.')
-    // Post.findRandom().limit(10).exec((err, p) => {
-    //   console.log(p[0])
-    // })
+  let ids = []
+  Post.find({}, (err, posts) => {
+    if (err) throw err
+    for (const post of posts) {
+      ids.push(post.id)
+    }
+    collect_posts(pages, '', 0, count => {
+      console.log(count + ' posts added to the database.')
+    })
   })
 }
 
