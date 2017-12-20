@@ -1,26 +1,16 @@
 const mongoose = require('mongoose')
 
 const postSchema = mongoose.Schema({
-  candidates: {
-    type: [String],
-    required: true,
-  },
-  tieCandidates: {
-    type: [String],
-    required: true,
-  },
-  class: Number,
-  nonce: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  hashedVote: {
-    type: String,
-    required: true
-  }
+  id: String,
+  title: String,
+  author: String,
+  score: Number,
+  url: String,
+  subreddit: String,
+  domain: String,
+  created_utc: Number
 })
 
-const Posts = mongoose.model('Posts', postSchema)
+const Post = mongoose.model('Post', postSchema)
 
-module.exports = Posts
+module.exports = Post
