@@ -1,4 +1,6 @@
-let lives = 5
+let score = 0
+let lives = 10
+
 $(document).ready(() => {
   // begin loading spinner
   // $('#guess').hide()
@@ -13,17 +15,33 @@ $(document).ready(() => {
 })
 
 function start() {
-  next_image(() => {
-    $('#focus').show()
-    $('#display').hide()
+  get_challenge((post) => {
+    next_image(post, () => {
+      $('#focus').show()
+      $('#display').hide()
+    })
   })
 }
 
-function next_image(cb) {
-  let src = 'https://i.imgur.com/elbxVTmh.jpg'
-  $('#expand').attr('src', src)
-  $('#img').attr('src', src)
-  $('#title-bg').attr('src', src)
+function get_challenge(cb) {
+  $.ajax({
+    type: 'get',
+    url: '/api',
+    success: response => {
+      cb(response)
+    },
+    error: error => {
+      // error!
+
+    }
+  })
+}
+
+function next_image(post, cb) {
+  $('#expand').attr('href', post.url)
+  $('#img').attr('src', post.url)
+  $('#title-bg').attr('src', post.url)
+  $('#title').html(post.title)
   $('#img').on('load', () => {
     cb()
   })
