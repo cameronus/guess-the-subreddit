@@ -1,6 +1,4 @@
-let posts = []
-let current = 0
-
+let lives = 5
 $(document).ready(() => {
   // begin loading spinner
   // $('#guess').hide()
@@ -13,6 +11,28 @@ $(document).ready(() => {
   //   posts = data
   // })
 })
+
+function start() {
+  next_image(() => {
+    $('#focus').show()
+    $('#display').hide()
+  })
+}
+
+function next_image(cb) {
+  let src = 'https://i.imgur.com/elbxVTmh.jpg'
+  $('#expand').attr('src', src)
+  $('#img').attr('src', src)
+  $('#title-bg').attr('src', src)
+  $('#img').on('load', () => {
+    cb()
+  })
+}
+
+function guess() {
+  //check guess, edit lives, return lives
+}
+
 
 function download(cb) {
   $.ajax({
