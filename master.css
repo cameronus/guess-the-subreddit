@@ -64,7 +64,7 @@ nav {
   min-height: 20px;
   max-height: 90vh;
   position: relative;
-  border-radius: 5px;
+  border-radius: 8px;
   overflow: hidden;
   transition: .4s all;
   box-shadow: rgba(68, 68, 100, 0.2) 0px 2px 2px,
