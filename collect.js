@@ -23,6 +23,7 @@ const subs = [
 
 collect(30, subs)
 // avg_score()
+// add more functions (prune, stats, auto-collect, delete old, minimum score, scope)
 
 function avg_score() {
   let total = 0

@@ -29,9 +29,7 @@ function get_challenge(cb) {
         cb()
       })
     },
-    error: err => {
-      server_error(err)
-    }
+    error: err => server_error(err)
   })
 }
 
@@ -55,20 +53,24 @@ function guess() {
         // console.log('next')
       })
     },
-    error: err => {
-      server_error(err)
-    }
+    error: err => server_error(err)
   })
 }
 
 function skip() {
   get_challenge(() => {
-    // console.log('next')
+
   })
 }
 
 function game_over() {
-  alert('game over!')
+  iziToast.error({
+      id: 'error',
+      title: 'Game Over',
+      message: 'You have 0 lives left.',
+      position: 'topRight',
+      transitionIn: 'fadeInDown'
+  })
 }
 
 function server_error(err) {
