@@ -74,7 +74,30 @@ nav {
 }
 #stats h4 {
   margin: 0px auto;
-  text-align: center;
+}
+#skip {
+  margin-top: 35px;
+  width: 6vw;
+  height: 40px;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  font-size: 15px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 1.5px;
+  transition: .1s all;
+  box-shadow: rgba(68, 68, 100, 0.3) 0px 1px 4px;
+  background: #ed3625; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #ed3625 0%, #f7a138 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #ed3625 0%,#f7a138 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #ed3625 0%,#f7a138 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ed3625', endColorstr='#f7a138',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+#skip:active {
+  transform: translateY(1px);
 }
 
 #focus-wrapper {
