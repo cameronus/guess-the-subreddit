@@ -53,23 +53,31 @@ mongoose.connect('mongodb://localhost/guess-the-subreddit')
 
 
 
-// function collect_posts() {
-//
-// }
 
-collect_from_page('')
+
+collect(2)
 mongoose.disconnect()
 
-function collect_from_page(after) {
+function collect(pages) {
+  collect_posts(pages, '')
+}
+
+function collect_posts(pages, after) {
+  collect_from_page(after, a => {
+    console.log(a)
+    if (pages > 1) collect_posts(pages - 1, a)
+  })
+}
+
+function collect_from_page(after, cb) {
   if (after != '') after = '?after=' + after
   request('https://www.reddit.com/.json' + after, (err, response, body) => {
     if (err) throw err
-    console.log('data collected')
-    const parsed = JSON.parse(body)
-    const posts = parsed.data.children
+    const parsed = JSON.parse(body).data
+    const posts = parsed.children
+    cb(parsed.after)
     for (const raw_post of posts) {
       const post = raw_post.data
-      console.log(post.url)
       if (check_post(post)) {
         const entry = new Post({
           id: post.id,
