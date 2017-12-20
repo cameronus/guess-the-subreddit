@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const random = require('mongoose-random')
 
 const postSchema = mongoose.Schema({
   id: String,
@@ -10,6 +11,8 @@ const postSchema = mongoose.Schema({
   domain: String,
   created_utc: Number
 })
+
+postSchema.plugin(random, { path: 'r' })
 
 const Post = mongoose.model('Post', postSchema)
 

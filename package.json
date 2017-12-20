@@ -12,6 +12,7 @@
     "axios": "^0.17.1",
     "express": "^4.16.2",
     "mongoose": "^4.10.8",
+    "mongoose-random": "^0.1.1",
     "request": "^2.83.0"
   }
 }

@@ -11,61 +11,21 @@ const approved_ext = ['jpg', 'png', 'gif', 'jpeg', 'JPG', 'PNG']
 mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/guess-the-subreddit')
 
-// getPosts([], '', (err, posts) => {
-//   if (err) console.error(err)
-//   console.log(posts.length)
-// })
-// function getPosts(posts, after, cb) {
-//   axios.get('https://www.reddit.com/.json' + after)
-//   .then(response => {
-//     const page = response.data.data
-//     after = '?after=' + page.after
-//     for (const post_object of page.children) {
-//       const post = post_object.data
-//       const domain = post.domain
-//       let url = post.url
-//       if (!post.over_18 && approved_domains.indexOf(domain) > -1 && approved_ext.indexOf(url.substring(url.length - 3)) > -1) {
-//         const subreddit = post.subreddit.toLowerCase()
-//         if (domain == 'i.imgur.com') url = url.substring(0, url.length - 4) + 'h' + url.substring(url.length - 4)
-//         // if (domain == 'i.redd.it') url = url
-//         // const title = post.title
-//         // const time_posted = post.created_utc
-//         // const score = post.score
-//         // console.log(title, subreddit, url, (new Date(time_posted * 1000)).toLocaleString('en-US'), score)
-//         posts.push({
-//           subreddit: crypto.createHash('sha256').update(subreddit).digest('hex'),
-//           url: url
-//         })
-//         if (posts.length == posts_per_game) return posts
-//       }
-//     }
-//   })
-//   .catch(error => cb(true, null))
-//   .then(() => {
-//     if (posts.length == posts_per_game) cb(null, posts)
-//     return getPosts(posts, after, cb)
-//   })
-// }
-
-
-
-
-
-
-
-
-
-collect(2)
-mongoose.disconnect()
+collect(30)
 
 function collect(pages) {
-  collect_posts(pages, '')
+  collect_posts(pages, '', 0, count => {
+    console.log(count + ' posts added to the database.')
+    // Post.findRandom().limit(10).exec((err, p) => {
+    //   console.log(p[0])
+    // })
+  })
 }
 
-function collect_posts(pages, after) {
-  collect_from_page(after, a => {
-    console.log(a)
-    if (pages > 1) collect_posts(pages - 1, a)
+function collect_posts(pages, after, count, cb) {
+  collect_from_page(after, (a, c) => {
+    if (pages == 1) return cb(count + c)
+    collect_posts(pages - 1, a, count + c, cb)
   })
 }
 
@@ -75,10 +35,11 @@ function collect_from_page(after, cb) {
     if (err) throw err
     const parsed = JSON.parse(body).data
     const posts = parsed.children
-    cb(parsed.after)
+    let count = 0
     for (const raw_post of posts) {
       const post = raw_post.data
       if (check_post(post)) {
+        count++
         const entry = new Post({
           id: post.id,
           title: post.title,
@@ -90,13 +51,14 @@ function collect_from_page(after, cb) {
           created_utc: post.created_utc
         })
         entry.save((err, response) => {
-          if (err) return console.error(err)
+          if (err) throw err
         })
       }
     }
+    cb(parsed.after, count)
   })
 }
 
 function check_post(post) {
-  return approved_domains.indexOf(post.domain) > -1
+  return approved_domains.indexOf(post.domain) > -1 && approved_ext.indexOf(post.url.substring(post.url.length - 3)) > -1
 }
