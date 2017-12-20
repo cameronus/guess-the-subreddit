@@ -64,7 +64,7 @@ nav {
   min-height: 20px;
   max-height: 90vh;
   position: relative;
-  border-radius: 5px;
+  border-radius: 8px;
   overflow: hidden;
   transition: .4s all;
   box-shadow: rgba(68, 68, 100, 0.2) 0px 2px 2px,
@@ -159,18 +159,20 @@ nav {
   display: flex;
   bottom: 0px;
   width: 100%;
-  z-index: 200;
 }
-#input-bar button {
+#input-bar p {
   background-color: rgba(48, 48, 48, 0.3);
   height: 37px;
-  outline: none;
-  border: 0px;
-  padding-left: 10px;
+  margin:0px;
+  padding: 0px;
+  padding-left: 12px;
+  padding-right: 1px;
   color: white;
   font-family: 'Lato', sans-serif;
   font-size: 14px;
   font-weight: 400;
+  text-align: center;
+  line-height: 37px;
 }
 #guess {
   width: 100%;
@@ -185,9 +187,6 @@ nav {
   font-family: 'Lato', sans-serif;
   font-size: 14px;
   font-weight: 400;
-}
-#guess::-webkit-input-placeholder {
-  color: #ccc;
 }
 #check {
   width: 37px;
