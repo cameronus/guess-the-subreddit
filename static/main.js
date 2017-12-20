@@ -15,11 +15,10 @@ $(document).ready(() => {
 })
 
 function start() {
-  get_challenge((post) => {
-    next_image(post, () => {
-      $('#focus').show()
-      $('#display').hide()
-    })
+  get_challenge(() => {
+    $('#focus').show()
+    $('#stats').show()
+    $('#display').hide()
   })
 }
 
@@ -28,27 +27,43 @@ function get_challenge(cb) {
     type: 'get',
     url: '/api',
     success: response => {
-      cb(response)
+      $('#expand').attr('href', response.url)
+      $('#img').attr('src', response.url)
+      $('#title-bg').attr('src', response.url)
+      $('#title').html(response.title)
+      $('#img').on('load', () => {
+        $('#guess').focus()
+        cb()
+      })
     },
     error: error => {
       // error!
-
     }
   })
 }
 
-function next_image(post, cb) {
-  $('#expand').attr('href', post.url)
-  $('#img').attr('src', post.url)
-  $('#title-bg').attr('src', post.url)
-  $('#title').html(post.title)
-  $('#img').on('load', () => {
-    cb()
-  })
-}
-
 function guess() {
-  //check guess, edit lives, return lives
+  $.ajax({
+    type: 'post',
+    url: '/api',
+    data: {
+      subreddit: $('#guess').val()
+    },
+    success: response => {
+      $('#lives-number').html(response.lives)
+      $('#score-number').html(response.score)
+      $('#guess').val('')
+      if (response.lost) return alert('game over') // oh no! reset game route
+      if (!response.correct) return alert('incorrect') // oh no! display error toast
+      alert('correct!')
+      get_challenge(() => {
+        console.log('next')
+      })
+    },
+    error: error => {
+      // error!
+    }
+  })
 }
 
 
