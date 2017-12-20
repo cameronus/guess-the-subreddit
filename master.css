@@ -152,7 +152,7 @@ nav {
   position: absolute;
   top: -100%;
   left: -25%;
-  filter: blur(50px) saturate(400%);
+  filter: blur(50px) saturate(200%);
   width: 150%;
   height: 500%;
   z-index: -1;
