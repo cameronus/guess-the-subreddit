@@ -17,21 +17,20 @@ function get_challenge(cb) {
     type: 'get',
     url: '/api',
     success: response => {
-      if (!response.title || !response.url) return update_scoring(response)
+      $('#lives-number').html(response.lives)
+      $('#score-number').html(response.score)
+      if (response.lives == 0) return game_over()
       $('#expand').attr('href', response.url)
       $('#img').attr('src', response.url)
       $('#title-bg').attr('src', response.url)
       $('#title').html(response.title)
-      $('#lives-number').html(response.lives)
-      $('#score-number').html(response.score)
-      if (response.lives == 0) return game_over()
       $('#img').on('load', () => {
         $('#guess').focus()
         cb()
       })
     },
-    error: error => {
-      // error!
+    error: err => {
+      server_error(err)
     }
   })
 }
@@ -56,8 +55,8 @@ function guess() {
         // console.log('next')
       })
     },
-    error: error => {
-      // error!
+    error: err => {
+      server_error(err)
     }
   })
 }
@@ -68,14 +67,10 @@ function skip() {
   })
 }
 
-function update_scoring(response) {
-  $('#lives-number').html(response.lives)
-  $('#score-number').html(response.score)
-  if (response.lives == 0) return alert('game over!')
-  if (response.correct != null && response.correct == true) return alert('correct!')
-  if (response.correct != null && response.correct == false) return alert('wrong!')
-}
-
 function game_over() {
   alert('game over!')
+}
+
+function server_error(err) {
+  alert('server error!')
 }

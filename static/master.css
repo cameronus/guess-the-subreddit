@@ -89,14 +89,13 @@ footer h6 {
   height: auto;
   position: absolute;
   right: 0;
-  top: calc(50% - 250px);
   display: none;
+  top: calc(50% - 250px);
 }
 #stats #container {
   margin: 0px auto;
   text-align: center;
   width: 10vw;
-  background-color:
 }
 #stats h4 {
   margin: 0px auto;
@@ -124,6 +123,24 @@ footer h6 {
 }
 #skip:active {
   transform: translateY(1px);
+}
+
+#gameover {
+  background-color: black;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 0px auto;
+  width: 400px;
+  height: 400px;
+  margin-top: calc(50vh - 300px);
+  position: relative;
+  display: none;
+}
+#gameover #container {
+  margin: 0px auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 #focus-wrapper {
