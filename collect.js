@@ -11,18 +11,42 @@ const approved_ext = ['jpg', 'png', 'gif', 'jpeg', 'JPG', 'PNG']
 mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/guess-the-subreddit')
 
-collect(100, 'all')
+const subs = [
+  'all', 'pics', 'hmmm',
+  'interestingasfuck',
+  'mildlyinteresting',
+  'oddlysatisfying',
+  'unexpected', 'dankmemes',
+  'photoshopbattles', 'crappydesign',
+  'nononono', 'nonononoyes',
+  'yesyesyesno', 'anormaldayinrussia']
 
-function collect(pages, sub) {
+collect(30, subs)
+// avg_score()
+
+function avg_score() {
+  let total = 0
+  Post.find({}, (err, posts) => {
+    if (err) throw err
+    for (const post of posts) {
+      total += post.score
+    }
+    console.log(total/posts.length)
+  })
+}
+
+function collect(pages, subs) {
   let ids = []
   Post.find({}, (err, posts) => {
     if (err) throw err
     for (const post of posts) {
       ids.push(post.id)
     }
-    collect_posts(pages, sub, '', 0, ids, count => {
-      console.log(count + ' posts added to the database.')
-    })
+    for (const sub of subs) {
+      collect_posts(pages, sub, '', 0, ids, count => {
+        console.log(`${count} posts added from r/${sub}.`)
+      })
+    }
   })
 }
 
