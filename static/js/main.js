@@ -13,6 +13,7 @@ function start() {
 }
 
 function get_challenge(cb) {
+  // start loading
   $.ajax({
     type: 'get',
     url: '/api',
@@ -25,7 +26,7 @@ function get_challenge(cb) {
       $('#title-bg').attr('src', response.url)
       $('#title').html(response.title)
       $('#img').on('load', () => {
-        $('#guess').focus()
+        // end loading
         cb()
       })
     },
@@ -35,7 +36,7 @@ function get_challenge(cb) {
 
 function guess() {
   const subreddit = $('#guess').val()
-  if (subreddit == '') return alert('please enter a guess')
+  if (subreddit == '') return enter_guess()
   $.ajax({
     type: 'post',
     url: '/api',
@@ -47,10 +48,10 @@ function guess() {
       $('#lives-number').html(response.lives)
       $('#score-number').html(response.score)
       if (response.lives == 0) return game_over()
-      if (!response.correct) return alert('incorrect!')
-      alert('correct!')
+      if (!response.correct) return incorrect()
+      correct()
       get_challenge(() => {
-        // console.log('next')
+
       })
     },
     error: err => server_error(err)
@@ -63,16 +64,52 @@ function skip() {
   })
 }
 
+function enter_guess() {
+  iziToast.warning({
+      id: 'warning',
+      title: 'Enter a Guess',
+      message: 'Please enter a guess and try again.',
+      position: 'topRight',
+      transitionIn: 'fadeInDown'
+  })
+}
+
+function incorrect() {
+  iziToast.warning({
+      id: 'warning',
+      title: 'Incorrect',
+      message: 'Please try again!',
+      position: 'topRight',
+      transitionIn: 'fadeInDown'
+  })
+}
+
+function correct() {
+  iziToast.success({
+      id: 'success',
+      title: 'Correct',
+      message: 'That answer was correct!',
+      position: 'topRight',
+      transitionIn: 'fadeInDown'
+  })
+}
+
 function game_over() {
   iziToast.error({
       id: 'error',
       title: 'Game Over',
-      message: 'You have 0 lives left.',
+      message: 'You have exhausted your lives.',
       position: 'topRight',
       transitionIn: 'fadeInDown'
   })
 }
 
 function server_error(err) {
-  alert('server error!')
+  iziToast.error({
+      id: 'error',
+      title: 'Server Error',
+      message: 'Please reload the page.',
+      position: 'topRight',
+      transitionIn: 'fadeInDown'
+  })
 }

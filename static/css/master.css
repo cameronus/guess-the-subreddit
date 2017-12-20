@@ -215,7 +215,7 @@ footer h6 {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-image: url('img/expand.svg');
+  background-image: url('../img/expand.svg');
   transition: .1s all;
 }
 #expand:active {
@@ -289,7 +289,7 @@ footer h6 {
   width: 37px;
   height: 37px;
   cursor: pointer;
-  background-image: url('img/enter.svg');
+  background-image: url('../img/enter.svg');
   background-repeat: no-repeat;
   background-position: center;
   transition: .1s all;
