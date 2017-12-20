@@ -2,12 +2,13 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Guess the Subreddit</title>
-      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-      <script src="/sha256.js"></script>
-      <script src="/main.js"></script>
-      <link rel="stylesheet" href="master.css">
+    <title>Guess the Subreddit</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="/sha256.js"></script>
+    <script src="/main.js"></script>
+    <link rel="stylesheet" href="master.css">
     <link rel="icon" type="image/png" href="img/icon.png">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
   </head>
   <body lang="en">
     <nav>
@@ -15,9 +16,18 @@
       <h2 id="score">Score: <span id="score-number">0</span></h2>
     </nav>
     <div id="focus-wrapper">
-      <button id="display" onclick="display()">START</button>
-      <button id="check" onclick="verify()">Guess</button>
-      <input id="guess" type="text" placeholder="Enter your guess here">
-      <img src="" id="img">
+      <div id="focus">
+          <img src="img/test.jpg" id="img">
+          <div id="title-bar">
+            <img src="img/test.jpg" id="title-bg">
+            <h2 id="title">Title here...</h2>
+            <button id="display" onclick="display()">START</button>
+            <div id="input-bar">
+              <input type="text" value="" placeholder="Enter the subreddit" class="text" id="guess">
+              <span id="check"></span>
+            </div>
+          </div>
+      </div>
+    </div>
   </body>
 </html>
