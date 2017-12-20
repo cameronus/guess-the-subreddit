@@ -128,13 +128,6 @@ nav {
   object-fit: contain;
 }
 
-#title {
-  text-shadow: 0px 1px 12px rgba(150, 150, 150, 0.1);
-  margin-left: 10px;
-  margin-bottom: 20px;
-  z-index: 1000;
-}
-
 #title-bar {
   width: 100%;
   bottom: 0px;
@@ -144,6 +137,12 @@ nav {
   vertical-align: top;
   overflow: hidden;
   z-index: 100;
+}
+#title {
+  text-shadow: 0px 1px 12px rgba(150, 150, 150, 0.1);
+  margin-left: 12px;
+  margin-bottom: 20px;
+  z-index: 1000;
 }
 
 #title-bg {
@@ -155,7 +154,6 @@ nav {
   height: 500%;
   z-index: -1;
 }
-
 #input-bar {
   margin: 0px;
   padding: 0px;
