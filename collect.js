@@ -1,34 +1,16 @@
 const axios = require('axios')
-const express = require('express')
 const crypto = require('crypto')
-const path = require('path')
-const app = express()
+const request = require('request')
 
-const port = 3000
 const posts_per_game = 10
 const approved_domains = ['i.imgur.com'/*, 'i.redd.it'*/]
-const approved_ext = ['jpg', 'png', 'gif']
-
-app.use(express.static('static'))
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + '/index.html'))
-})
-
-app.get('/api', (req, res) => {
-  getPosts([], '', (err, posts) => {
-    if (err) {
-      return res.json({
-        error: true
-      })
-    }
-    return res.json({
-      error: false,
-      data: posts
-    })
-  })
-})
-
+const approved_ext = ['jpg', 'png', 'gif', 'jpeg', 'JPG']
+//
+// getPosts([], '', (err, posts) => {
+//   if (err) console.error(err)
+//   console.log(posts.length)
+// })
+collect_from_page()
 function getPosts(posts, after, cb) {
   axios.get('https://www.reddit.com/.json' + after)
   .then(response => {
@@ -61,4 +43,30 @@ function getPosts(posts, after, cb) {
   })
 }
 
-app.listen(port, () => console.log('Listening on port 3000.'))
+
+
+
+
+
+
+function collect_posts() {
+
+}
+
+function collect_from_page() {
+  request('https://www.reddit.com/.json', (err, response, body) => {
+    if (err) throw err
+    const parsed = JSON.parse(body)
+    const posts = parsed.data.children
+    for (const raw_post of posts) {
+      const post = raw_post.data
+      if (check_post(post)) {
+        
+      }
+    }
+  })
+}
+
+function check_post(post) {
+  return true
+}
