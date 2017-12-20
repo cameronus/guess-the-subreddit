@@ -1,16 +1,19 @@
-const axios = require('axios')
 const crypto = require('crypto')
 const request = require('request')
+const mongoose = require('mongoose')
 
 const posts_per_game = 10
-const approved_domains = ['i.imgur.com'/*, 'i.redd.it'*/]
-const approved_ext = ['jpg', 'png', 'gif', 'jpeg', 'JPG']
-//
+const approved_domains = ['i.imgur.com', 'i.redd.it']
+const approved_ext = ['jpg', 'png', 'gif', 'jpeg', 'JPG', 'PNG']
+
+mongoose.connect('mongodb://localhost/guess-the-subreddit')
+
+collect_from_page()
+
 // getPosts([], '', (err, posts) => {
 //   if (err) console.error(err)
 //   console.log(posts.length)
 // })
-collect_from_page()
 function getPosts(posts, after, cb) {
   axios.get('https://www.reddit.com/.json' + after)
   .then(response => {
@@ -61,7 +64,7 @@ function collect_from_page() {
     for (const raw_post of posts) {
       const post = raw_post.data
       if (check_post(post)) {
-        
+
       }
     }
   })

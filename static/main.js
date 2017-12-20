@@ -3,8 +3,8 @@ let current = 0
 
 $(document).ready(() => {
   // begin loading spinner
-  $('#guess').hide()
-  $('#check').hide()
+  // $('#guess').hide()
+  // $('#check').hide()
   download((err, data) => {
     // end loading spinner
     if (err) {
