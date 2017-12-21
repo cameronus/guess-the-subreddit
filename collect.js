@@ -24,7 +24,7 @@ const subs = [
   'earthporn', 'space', 'gadgets', 'sports',
   'food', 'dataisbeautiful', 'art', 'woahdude',
  'osha', 'techsupportgore', 'wellthatsucks',
- 'wholesomememes']
+ 'wholesomememes', 'wtf']
 
 collect(30, subs)
 // avg_score()

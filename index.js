@@ -6,22 +6,29 @@ const bodyParser = require('body-parser')
 const uuidv4 = require('uuid/v4')
 const path = require('path')
 const mongoose = require('mongoose')
-
-const Post = require('./models/Post')
+const config = require('./config.json')
 
 const app = express()
-mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost/guess-the-subreddit')
+
+let Post
+if (!config.dev) {
+  Post = require('./models/Post')
+  mongoose.Promise = global.Promise
+  mongoose.connect('mongodb://localhost/guess-the-subreddit')
+}
 
 const port = 3000
 
-app.use(session({
+let options = {
   secret: 'very-secure-random-secret-key-42',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false },
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
-}))
+  cookie: { secure: false }
+}
+
+if (!config.dev) options.store = new MongoStore({ mongooseConnection: mongoose.connection })
+
+app.use(session(options))
 app.use(bodyParser.urlencoded({
   extended: true
 }))
@@ -30,7 +37,6 @@ app.use(express.static('static'))
 app.get('/', (req, res) => {
   let sess = req.session
   sess.uid = uuidv4()
-  // if below sess variables not set, set to init vals
   sess.lives = 10
   sess.score = 0
   sess.current = null
@@ -39,6 +45,14 @@ app.get('/', (req, res) => {
 
 app.get('/api', (req, res) => {
   let sess = req.session
+  if (config.dev) {
+    return res.json({
+      title: config.post.title,
+      url: config.post.url,
+      score: sess.score,
+      lives: sess.lives
+    })
+  }
   if (!sess.uid) return res.sendStatus(401)
   if (sess.lives == 0) return res.sendStatus(412)
   if (sess.current) {
@@ -63,6 +77,13 @@ app.get('/api', (req, res) => {
 
 app.post('/api', (req, res) => {
   let sess = req.session
+  if (config.dev) {
+    return res.json({
+      correct: true,
+      score: sess.score,
+      lives: sess.lives
+    })
+  }
   if (!sess.uid) return res.sendStatus(401)
   if (!sess.current) return res.sendStatus(422)
   if (sess.lives == 0) return res.sendStatus(412)
