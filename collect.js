@@ -19,7 +19,12 @@ const subs = [
   'unexpected', 'dankmemes',
   'photoshopbattles', 'crappydesign',
   'nononono', 'nonononoyes',
-  'yesyesyesno', 'anormaldayinrussia']
+  'yesyesyesno', 'anormaldayinrussia',
+  'madlads', 'funny', 'aww', 'gifs',
+  'earthporn', 'space', 'gadgets', 'sports',
+  'food', 'dataisbeautiful', 'art', 'woahdude'
+ 'osha', 'techsupportgore', 'wellthatsucks',
+ 'wholesomememes']
 
 collect(30, subs)
 // avg_score()
