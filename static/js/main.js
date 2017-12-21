@@ -25,9 +25,12 @@ function get_challenge(cb) {
       $('#img').attr('src', response.url)
       $('#title-bg').attr('src', response.url)
       $('#title').html(response.title)
-      $('#img').on('load', () => {
+      $('#img').one('load', () => {
         // end loading
         cb()
+      })
+      $('#img').one('error', () => {
+        return server_error()
       })
     },
     error: err => server_error(err)
@@ -68,7 +71,7 @@ function enter_guess() {
   iziToast.warning({
       id: 'warning',
       title: 'Enter a Guess',
-      message: 'Please enter a guess and try again.',
+      message: 'Please enter a guess.',
       position: 'topRight',
       transitionIn: 'fadeInDown'
   })
@@ -78,7 +81,7 @@ function incorrect() {
   iziToast.warning({
       id: 'warning',
       title: 'Incorrect',
-      message: 'Please try again!',
+      message: 'Please guess again!',
       position: 'topRight',
       transitionIn: 'fadeInDown'
   })
@@ -108,8 +111,11 @@ function server_error(err) {
   iziToast.error({
       id: 'error',
       title: 'Server Error',
-      message: 'Please reload the page.',
+      message: 'Reloading the page.',
       position: 'topRight',
       transitionIn: 'fadeInDown'
   })
+  setTimeout(() => {
+    window.location.reload(false)
+  }, 1500)
 }
