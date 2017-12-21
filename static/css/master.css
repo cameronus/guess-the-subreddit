@@ -46,7 +46,7 @@ a {
 nav {
   padding-left: 10vw;
   padding-right: 10vw;
-  height: 60px;
+  height: 55px;
   margin: 0px auto;
   background-color: rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -55,7 +55,7 @@ nav {
 }
 #home {
   float: left;
-  margin-top: -2px;
+  margin-top: -4px;
 }
 #nav-bg {
   position: absolute;
@@ -217,7 +217,7 @@ footer h5 {
 }
 
 #img {
-  max-height: calc(80vh - 150px);
+  max-height: calc(80vh - 140px);
   min-width: 20px;
   max-width: 80vw;
   object-fit: cover;
