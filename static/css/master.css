@@ -133,6 +133,7 @@ footer h5 {
   letter-spacing: 1.5px;
   color: #ffffff;
   background-color: rgba(0,0,0, .05);
+  border-radius: 0;
 }
 
 #gameover {
