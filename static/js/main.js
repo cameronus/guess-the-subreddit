@@ -63,7 +63,13 @@ function guess() {
 
 function skip() {
   get_challenge(() => {
-
+    iziToast.info({
+        id: 'info',
+        title: 'Skipped',
+        message: 'You have lost one life.',
+        position: 'topRight',
+        transitionIn: 'fadeInDown'
+    })
   })
 }
 
