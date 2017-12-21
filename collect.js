@@ -22,7 +22,7 @@ const subs = [
   'yesyesyesno', 'anormaldayinrussia',
   'madlads', 'funny', 'aww', 'gifs',
   'earthporn', 'space', 'gadgets', 'sports',
-  'food', 'dataisbeautiful', 'art', 'woahdude'
+  'food', 'dataisbeautiful', 'art', 'woahdude',
  'osha', 'techsupportgore', 'wellthatsucks',
  'wholesomememes']
 
