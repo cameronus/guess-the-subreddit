@@ -15,30 +15,32 @@
     <nav>
       <a id="home" href="/"><h1>Guess the Subreddit</h1></a>
     </nav>
-    <div id="stats">
-      <div id="container">
-        <h4><span id="lives-number">10</span></h4>
-        <h5 id="lives"><span>LIVES LEFT</span></h5>
-        <h4><span id="score-number">0</span></h4>
-        <h5 id="lives"><span>CORRECT</span></h5>
-        <button id="skip" onclick="skip()">SKIP</button>
-      </div>
-    </div>
     <div id="focus-wrapper">
       <button id="display" onclick="start()">START
         <img src="img/display.jpg" id="display-bg">
       </button>
-      <div id="focus">
-        <a href="" target="_blank" id="expand"></a>
-        <img src="" id="img">
-        <div id="title-bar">
-          <h3 id="title">Title here...</h3>
-          <img src="" id="title-bg">
+      <div id="focus-container">
+        <div id="stats">
+          <div id="left">
+            <h4><span id="lives-number">10</span> LIVES LEFT</h4>
+          </div>
+          <div id="right">
+            <h4><span id="score-number">0</span> CORRECT</h4>
+            <button id="skip" onclick="skip()">SKIP</button>
+          </div>
         </div>
-        <div id="input-bar">
-          <p>r/</p>
-          <input type="text" class="text" id="guess">
-          <span id="check" onclick="guess()"></span>
+        <div id="focus">
+          <a href="" target="_blank" id="expand"></a>
+          <img src="" id="img">
+          <div id="title-bar">
+            <h3 id="title">Title here...</h3>
+            <img src="" id="title-bg">
+          </div>
+          <div id="input-bar">
+            <p>r/</p>
+            <input type="text" class="text" id="guess">
+            <span id="check" onclick="guess()"></span>
+          </div>
         </div>
       </div>
     </div>
@@ -51,8 +53,8 @@
     </div>
     <footer>
       <div id="right">
-        <a href="https://github.com/cameronus" target="_blank"><h6>cameronus (Cameron Jones)</h6></a>
-        <a href="http://austinhou.com" target="_blank"><h6>PhoenixFieryn (Austin Hou)</h6></a>
+        <a href="https://github.com/cameronus" target="_blank"><h5>cameronus (Cameron Jones)</h5></a>
+        <a href="http://austinhou.com" target="_blank"><h5>PhoenixFieryn (Austin Hou)</h5></a>
       </div>
     </footer>
   </body>
