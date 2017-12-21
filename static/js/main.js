@@ -30,6 +30,7 @@ function get_challenge(cb) {
       $('#img').one('load', () => {
         // end loading
         cb()
+        $('#title-container').width($('#img').width())
       })
       $('#img').one('error', () => {
         return server_error()

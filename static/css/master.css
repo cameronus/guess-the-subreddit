@@ -252,11 +252,14 @@ footer h5 {
   -moz-box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.2);
 }
+#title-container {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 #title {
   text-shadow: 0px 1px 12px rgba(150, 150, 150, 0.3);
-  margin: 0px;
-  margin-left: 12px;
-  margin-right: 12px;
+  margin-left: 15px;
+  margin-right: 15px;
   margin-top: 20px;
   margin-bottom: 20px;
   z-index: 1000;
