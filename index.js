@@ -45,7 +45,9 @@ app.get('/', (req, res) => {
 
 app.get('/api', (req, res) => {
   let sess = req.session
+  if (sess.lives == 0) return res.sendStatus(412)
   if (config.dev) {
+    sess.lives -= 1
     return res.json({
       title: config.post.title,
       url: config.post.url,
@@ -54,7 +56,6 @@ app.get('/api', (req, res) => {
     })
   }
   if (!sess.uid) return res.sendStatus(401)
-  if (sess.lives == 0) return res.sendStatus(412)
   if (sess.current) {
     sess.lives -= 1
     if (sess.lives == 0) return res.json({
@@ -77,6 +78,7 @@ app.get('/api', (req, res) => {
 
 app.post('/api', (req, res) => {
   let sess = req.session
+  if (sess.lives == 0) return res.sendStatus(412)
   if (config.dev) {
     return res.json({
       correct: true,
@@ -86,7 +88,6 @@ app.post('/api', (req, res) => {
   }
   if (!sess.uid) return res.sendStatus(401)
   if (!sess.current) return res.sendStatus(422)
-  if (sess.lives == 0) return res.sendStatus(412)
   const data = req.body
   if (!data.subreddit) return res.sendStatus(422)
   Post.find({ id: sess.current }, (err, post) => {
