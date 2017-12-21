@@ -64,21 +64,15 @@ function guess() {
 
 function skip() {
   get_challenge(() => {
-    iziToast.info({
-        id: 'info',
-        title: 'Skipped',
-        message: 'You have lost one life.',
-        position: 'topRight',
-        transitionIn: 'fadeInDown'
-    })
+
   })
 }
 
 function enter_guess() {
-  iziToast.warning({
-      id: 'warning',
-      title: 'Enter a Guess',
-      message: 'Please enter a guess.',
+  iziToast.error({
+      id: 'error',
+      title: 'Error',
+      message: 'Please enter a guess',
       position: 'topRight',
       transitionIn: 'fadeInDown'
   })
