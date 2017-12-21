@@ -159,7 +159,7 @@ footer h5 {
 
 #focus-wrapper {
   margin: 0px auto;
-  margin-top: 4.5vh;
+  margin-top: 35px;
   justify-content: center;
   display: flex;
 }
@@ -221,12 +221,12 @@ footer h5 {
 }
 
 #img {
-  max-height: calc(80vh - 140px);
+  max-height: calc(100vh - 300px);
   min-width: 20px;
   max-width: 80vw;
   object-fit: cover;
   display: block;
-  margin:0px auto;
+  margin: 0px auto;
 }
 #expand {
   width: 30px;
