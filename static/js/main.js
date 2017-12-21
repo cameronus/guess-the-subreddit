@@ -25,6 +25,7 @@ function get_challenge(cb) {
       $('#img').attr('src', response.url)
       $('#title-bg').attr('src', response.url)
       $('#stats-bg').attr('src', response.url)
+      $('#nav-bg').attr('src', response.url)
       $('#title').html(response.title)
       $('#img').one('load', () => {
         // end loading

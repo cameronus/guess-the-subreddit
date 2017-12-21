@@ -7,7 +7,7 @@ h1 {
   font-family: 'Lato', sans-serif;
   font-size: 22px;
   font-weight: 900;
-  color: #eeeeee;
+  color: #ffffff;
   letter-spacing: 2px;
 }
 h2 {
@@ -48,20 +48,25 @@ nav {
   padding-right: 10vw;
   height: 60px;
   margin: 0px auto;
-  background: #0a4ad3;
-  /* Old browsers */
-  background: -moz-linear-gradient(45deg, #0a4ad3 0%, #68ddcc 87%, #68ddcc 100%);
-  /* FF3.6-15 */
-  background: -webkit-linear-gradient(45deg, #0a4ad3 0%, #68ddcc 87%, #68ddcc 100%);
-  /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(45deg, #0a4ad3 0%, #68ddcc 87%, #68ddcc 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0a4ad3', endColorstr='#68ddcc', GradientType=1);
-  /* IE6-9 fallback on horizontal gradient */
+  background-color: rgba(0, 0, 0, 0.1.5);
+  overflow: hidden;
+  position: relative;
+  box-shadow: rgba(68, 68, 100, 0.2) 0px 2px 2px,
+              rgba(68, 68, 100, 0.2) 0px 4px 4px;
+  transition: 1s all;
 }
 #home {
   float: left;
   margin-top: -2px;
+}
+#nav-bg {
+  position: absolute;
+  top: -100%;
+  left: -25%;
+  filter: blur(30px) saturate(150%);
+  width: 150%;
+  height: 300%;
+  z-index: -1;
 }
 
 footer {
@@ -152,7 +157,7 @@ footer h5 {
 
 #focus-wrapper {
   margin: 0px auto;
-  margin-top: 5vh;
+  margin-top: 4.5vh;
   justify-content: center;
   display: flex;
 }
@@ -177,7 +182,7 @@ footer h5 {
 }
 
 #display {
-  margin-top: 35vh;
+  margin-top: 30vh;
   width: 300px;
   height: 100px;
   font-family: 'Lato', sans-serif;
@@ -193,13 +198,15 @@ footer h5 {
   border: none;
   border-radius: 5px;
   outline: none;
-  box-shadow: rgba(68, 68, 100, 0.2) 0px 2px 2px, rgba(68, 68, 100, 0.2) 0px 4px 4px, rgba(68, 68, 100, 0.2) 0px 8px 8px;
+  box-shadow: rgba(68, 68, 100, 0.2) 0px 2px 2px,
+              rgba(68, 68, 100, 0.2) 0px 4px 4px,
+              rgba(68, 68, 100, 0.2) 0px 8px 8px;
 }
 #display:hover {
-  transform: translateY(2px);
+  transform: translateY(-1px);
 }
 #display:active {
-  transform: translateY(4px);
+  transform: translateY(2px);
 }
 #display-bg {
   width: 150%;
