@@ -86,23 +86,25 @@ footer h5 {
   height: 37px;
   display: none;
   position: relative;
-  border-radius: 8px;
-  margin-bottom: 5px;
   overflow: hidden;
   background-color: rgba(0, 0, 0, .1);
-  box-shadow: rgba(68, 68, 100, 0.2) 0px 2px 2px,
-              rgba(68, 68, 100, 0.2) 0px 4px 4px;
 }
 #stats div {
   margin-top: 9px;
 }
 #stats #left {
   float: left;
+  display: flex;
   margin-left: 12px;
 }
 #stats #right {
   float: right;
   display: flex;
+}
+#stats img {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
 }
 #stats-bg {
   position: absolute;
@@ -122,12 +124,12 @@ footer h5 {
   outline: none;
   border: none;
   margin-left: 12px;
-  margin-top: -10px;
-  font-size: 15px;
+  margin-top: -9px;
+  font-size: 14px;
   font-weight: 900;
   letter-spacing: 1.5px;
-  color: #eeeeee;
-  background-color: rgba(0,0,0, .1);
+  color: #ffffff;
+  background-color: rgba(0,0,0, .05);
 }
 
 #gameover {
@@ -210,7 +212,7 @@ footer h5 {
 }
 
 #img {
-  max-height: calc(80vh - 170px);
+  max-height: calc(80vh - 150px);
   min-width: 20px;
   max-width: 80vw;
   object-fit: cover;
@@ -221,7 +223,7 @@ footer h5 {
   width: 30px;
   height: 30px;
   position: absolute;
-  top: 10px;
+  top: 50px;
   right: 10px;
   background-image: url('../img/expand.svg');
   transition: .1s all;
