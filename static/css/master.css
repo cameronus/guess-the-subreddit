@@ -125,6 +125,7 @@ footer h5 {
   cursor: pointer;
   outline: none;
   border: none;
+  border-radius: 0;
   margin-left: 12px;
   margin-top: -9px;
   font-size: 14px;
