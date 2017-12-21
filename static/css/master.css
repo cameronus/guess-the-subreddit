@@ -262,7 +262,9 @@ footer h5 {
   margin-right: 15px;
   margin-top: 20px;
   margin-bottom: 20px;
-  z-index: 1000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 #title-bg {
   position: absolute;
