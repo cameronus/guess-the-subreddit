@@ -61,7 +61,7 @@ nav {
   position: absolute;
   top: -200%;
   left: -25%;
-  filter: blur(20px) saturate(200%);
+  filter: blur(20px) saturate(150%);
   width: 150%;
   height: 500%;
   z-index: -1;
@@ -152,9 +152,8 @@ footer h5 {
   z-index: 2000;
 }
 #gameover-container {
-  margin: 0px auto;
   text-align: center;
-  margin-top: 35%;
+  margin-top: 25%;
 }
 #gameover-container h1 {
   color: black;
@@ -166,6 +165,42 @@ footer h5 {
 }
 #final-score {
   font-weight: 400;
+}
+#restart {
+  width: 200px;
+  height: 75px;
+  margin-top: 30px;
+  font-family: 'Lato', sans-serif;
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 5px;
+  color: white;
+  cursor: pointer;
+  transition: .2s all;
+  background-color: rgba(0, 0, 0, 0);
+  overflow: hidden;
+  position: relative;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: rgba(68, 68, 100, 0.2) 0px 2px 2px,
+              rgba(68, 68, 100, 0.2) 0px 4px 4px,
+              rgba(68, 68, 100, 0.2) 0px 8px 8px;
+}
+#restart:hover {
+  transform: translateY(-1px);
+}
+#restart:active {
+  transform: translateY(2px);
+}
+#restart-bg {
+  width: 150%;
+  height: 175%;
+  margin-left: -90%;
+  margin-top: -20%;
+  z-index: -1;
+  position: absolute;
+  filter: blur(30px);
 }
 
 #focus-wrapper {
