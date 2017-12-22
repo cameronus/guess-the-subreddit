@@ -39,7 +39,8 @@ function check(posts) {
   exec(`curl -o /dev/null --silent --head --write-out '%{http_code}\n' ${post.url}`, (err, stdout, stderr) => {
     if (err) throw err
     console.log('checked', post.id)
-    if (stdout.trim() == 404) {
+    const code = stdout.trim()
+    if (code == 404 || code == 302) {
       console.log(post.id, 'is missing -', posts.length, 'left')
       process.send(post.id)
     }
