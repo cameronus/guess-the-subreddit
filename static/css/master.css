@@ -150,11 +150,19 @@ footer h5 {
   position: relative;
   display: none;
 }
-#gameover #container {
+#container {
   margin: 0px auto;
   text-align: center;
-  display: flex;
-  justify-content: center;
+  z-index: 2000;
+}
+#cover {
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
 }
 
 #focus-wrapper {
@@ -253,8 +261,7 @@ footer h5 {
   box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.2);
 }
 #title-container {
-  overflow: hidden;
-  text-overflow: ellipsis;
+
 }
 #title {
   text-shadow: 0px 1px 12px rgba(150, 150, 150, 0.3);

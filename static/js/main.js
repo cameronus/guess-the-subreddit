@@ -6,9 +6,10 @@ $(document).ready(() => {
 
 function start() {
   get_challenge(() => {
+    $('#gameover').hide()
+    $('#display').hide()
     $('#focus').show()
     $('#stats').show()
-    $('#display').hide()
   })
 }
 
@@ -108,6 +109,9 @@ function game_over() {
       position: 'topRight',
       transitionIn: 'fadeInDown'
   })
+  $('#focus').hide()
+  $('#nav-bg').attr('src', 'img/display.jpg')
+  $('#gameover').show()
 }
 
 function server_error(err) {
