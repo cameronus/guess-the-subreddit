@@ -66,7 +66,7 @@ subreddit just by looking at a post.
 47. softwaregore
 48. eyebleach
 49. notmyjob
-50. quictyourbullshit
+50. quityourbullshit
 51. youseeingthisshit
 52. thisismylifenow
 53. holdmybeer
@@ -76,9 +76,14 @@ subreddit just by looking at a post.
 57. perfectloops
 58. cinemagraphs
 59. sweatypalms
-60. jesusfuckingchrist (includes others)
+60. spacex
 
-### config.json
-dev: false for posts from MongoDB, true for frontend development mode
-post.title: title for frontend dev post
-post.url: url for frontend dev post
+## config.json
+### dev
+false for posts from MongoDB, true for frontend development mode
+
+### post.title
+title for frontend dev post
+
+### post.url
+url for frontend dev post
