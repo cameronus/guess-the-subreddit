@@ -140,29 +140,32 @@ footer h5 {
 }
 
 #gameover {
-  background-color: black;
   padding: 20px;
   border-radius: 8px;
-  margin: 0px auto;
   width: 400px;
   height: 400px;
-  margin-top: calc(50vh - 300px);
-  position: relative;
+  margin-top: calc(50vh - 220px);
+  position: absolute;
+  left: calc(50vw - 220px);
   display: none;
-}
-#container {
-  margin: 0px auto;
-  text-align: center;
+  background-color: white;
   z-index: 2000;
 }
-#cover {
-  background-color: rgba(0, 0, 0, 0.4);
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  z-index: -1;
-  top: 0;
-  left: 0;
+#gameover-container {
+  margin: 0px auto;
+  text-align: center;
+  margin-top: 35%;
+}
+#gameover-container h1 {
+  color: black;
+  font-size: 40px;
+  margin: 12px;
+}
+#gameover-title {
+  font-weight: 900;
+}
+#final-score {
+  font-weight: 400;
 }
 
 #focus-wrapper {

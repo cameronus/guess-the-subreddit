@@ -6,7 +6,6 @@ $(document).ready(() => {
 
 function start() {
   get_challenge(() => {
-    $('#gameover').hide()
     $('#display').hide()
     $('#focus').show()
     $('#stats').show()
@@ -31,6 +30,7 @@ function get_challenge(cb) {
       $('#img').one('load', () => {
         // end loading
         cb()
+        $('#guess').focus()
         $('#title-container').width($('#img').width() - 24)
       })
       $('#img').one('error', () => {
@@ -109,8 +109,10 @@ function game_over() {
       position: 'topRight',
       transitionIn: 'fadeInDown'
   })
-  $('#focus').hide()
-  $('#nav-bg').attr('src', 'img/display.jpg')
+  const points = $('#score-number').html()
+  $('#final-score').html(points == 1 ? '1 Point' : points + ' Points')
+  $('#guess').blur()
+  $('#gameover').nextAll().css('filter', 'blur(40px)')
   $('#gameover').show()
 }
 
