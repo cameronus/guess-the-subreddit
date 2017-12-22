@@ -2,9 +2,9 @@ const crypto = require('crypto')
 const request = require('request')
 const mongoose = require('mongoose')
 
-const Post = require('./models/Post')
+const Post = require('../models/Post')
 
-const posts_per_game = 10
+const min_score = 1500
 const approved_domains = ['i.imgur.com', 'i.redd.it']
 const approved_ext = ['jpg', 'png', 'gif', 'jpeg', 'JPG', 'PNG']
 
@@ -23,23 +23,24 @@ const subs = [
   'madlads', 'funny', 'aww', 'gifs',
   'earthporn', 'space', 'gadgets', 'sports',
   'food', 'dataisbeautiful', 'art', 'woahdude',
- 'osha', 'techsupportgore', 'wellthatsucks',
- 'wholesomememes', 'wtf', 'fellowkids']
+  'osha', 'techsupportgore', 'wellthatsucks',
+  'wholesomememes', 'wtf', 'fellowkids'
+  'ineeeedit', 'ofcoursethatsathing',
+  'crappyoffbrands', 'blackpeopletwitter',
+  'whitepeopletwitter', 'blackpeoplegifs',
+  'whitepeoplegifs', 'pcmasterrace',
+  'reallifedoodles', 'oopsdidntmeanto',
+  'idiotsfightingthings', 'mademesmile',
+  'therewasanattempt', 'hitmanimals',
+  'prematurecelebration', 'mildlyinfuriating',
+  'softwaregore', 'eyebleach', 'notmyjob',
+  'quityourbullshit', 'youseeingthisshit',
+  'thisismylifenow', 'holdmybeer', 'holdmycosmo',
+  'im14andthisisdeep', 'gifsthatkeepongiving',
+  'perfectloops', 'cinemagraphs', 'sweatypalms'
+]
 
 collect(30, subs)
-// avg_score()
-// add more functions (prune, stats, auto-collect, delete old, minimum score, scope)
-
-function avg_score() {
-  let total = 0
-  Post.find({}, (err, posts) => {
-    if (err) throw err
-    for (const post of posts) {
-      total += post.score
-    }
-    console.log(total/posts.length)
-  })
-}
 
 function collect(pages, subs) {
   let ids = []
@@ -94,5 +95,5 @@ function collect_from_page(sub, after, ids, cb) {
 }
 
 function check_post(post, ids) {
-  return approved_domains.indexOf(post.domain) > -1 && approved_ext.indexOf(post.url.substring(post.url.length - 3)) > -1 && ids.indexOf(post.id) == -1 && !post.over_18
+  return approved_domains.indexOf(post.domain) > -1 && approved_ext.indexOf(post.url.substring(post.url.length - 3)) > -1 && ids.indexOf(post.id) == -1 && !post.over_18 && post.score >= min_score
 }
