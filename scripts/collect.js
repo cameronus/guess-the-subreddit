@@ -24,7 +24,7 @@ const subs = [
   'earthporn', 'space', 'gadgets', 'sports',
   'food', 'dataisbeautiful', 'art', 'woahdude',
   'osha', 'techsupportgore', 'wellthatsucks',
-  'wholesomememes', 'wtf', 'fellowkids'
+  'wholesomememes', 'wtf', 'fellowkids',
   'ineeeedit', 'ofcoursethatsathing',
   'crappyoffbrands', 'blackpeopletwitter',
   'whitepeopletwitter', 'blackpeoplegifs',
