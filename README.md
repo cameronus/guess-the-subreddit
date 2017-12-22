@@ -3,7 +3,7 @@
 Guess the Subreddit is a game where the player has to guess the name of the
 subreddit just by looking at a post.
 
-##To-do
+## To-do
 1. Leaderboard
 2. Max time limit for per posts
 3. Loading animation
@@ -16,7 +16,7 @@ subreddit just by looking at a post.
 10. Review design
 11. Code optimization and documentation
 
-##Subreddits
+## Subreddits
 1. all
 2. interestingasfuck
 3. mildlyinteresting
