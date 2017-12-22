@@ -6,7 +6,7 @@ const cluster = require('cluster')
 
 const Post = require('../models/Post')
 
-const num_workers = 4
+const num_workers = 16
 
 mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/guess-the-subreddit')
