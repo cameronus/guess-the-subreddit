@@ -50,7 +50,7 @@ function collect(pages, subs) {
     for (const post of posts) {
       ids.push(post.id)
     }
-    for (const sub of subs) {
+    for (let sub of subs) {
       if (top_only) sub += '/top/'
       collect_posts(pages, sub, '', 0, ids, count => {
         console.log(`${count} posts added from r/${sub}.`)
