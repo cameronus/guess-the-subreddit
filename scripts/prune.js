@@ -40,9 +40,8 @@ function check(posts) {
     if (err) throw err
     console.log('checked', post.id)
     if (stdout.trim() == 404) {
-      console.log(post.id, ' is missing')
+      console.log(post.id, 'is missing -', posts.length, 'left')
       process.send(post.id)
-      // post.remove()
     }
     check(posts)
   })

@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const Post = require('../models/Post')
 
 const min_score = 1500
+const top_only = false
 const approved_domains = ['i.imgur.com', 'i.redd.it']
 const approved_ext = ['jpg', 'png', 'gif', 'jpeg', 'JPG', 'PNG']
 
@@ -40,7 +41,7 @@ const subs = [
   'perfectloops', 'cinemagraphs', 'sweatypalms'
 ]
 
-collect(30, subs)
+collect(50, subs)
 
 function collect(pages, subs) {
   let ids = []
@@ -50,6 +51,7 @@ function collect(pages, subs) {
       ids.push(post.id)
     }
     for (const sub of subs) {
+      if (top_only) sub += '/top/'
       collect_posts(pages, sub, '', 0, ids, count => {
         console.log(`${count} posts added from r/${sub}.`)
       })
