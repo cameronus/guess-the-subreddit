@@ -76,6 +76,7 @@ subreddit just by looking at a post.
 57. perfectloops
 58. cinemagraphs
 59. sweatypalms
+60. jesusfuckingchrist (includes others)
 
 ### config.json
 dev: false for posts from MongoDB, true for frontend development mode
