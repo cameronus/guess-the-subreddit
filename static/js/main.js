@@ -116,7 +116,7 @@ function game_over() {
   $('#check').css('cursor', 'default')
   $('#guess').css('cursor', 'default')
   $('#home').css('cursor', 'default')
-  $('#final-score').html(points == 1 ? '1 Point' : points + ' POINTS')
+  $('#final-score').html(points == 1 ? '1 POINT' : points + ' POINTS')
   $('#guess').blur()
   $('#gameover').nextAll().css('filter', 'blur(40px)')
   $('#gameover').nextAll().css('user-select', 'none')
