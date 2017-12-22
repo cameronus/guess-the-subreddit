@@ -110,9 +110,16 @@ function game_over() {
       transitionIn: 'fadeInDown'
   })
   const points = $('#score-number').html()
+  $('#skip').prop('disabled', true)
+  $('#check').prop('disabled', true)
+  $('#skip').css('cursor', 'default')
+  $('#check').css('cursor', 'default')
+  $('#guess').css('cursor', 'default')
+  $('#home').css('cursor', 'default')
   $('#final-score').html(points == 1 ? '1 Point' : points + ' Points')
   $('#guess').blur()
   $('#gameover').nextAll().css('filter', 'blur(40px)')
+  $('#gameover').nextAll().css('user-select', 'none')
   $('#gameover').show()
 }
 
