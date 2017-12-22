@@ -4,7 +4,8 @@ const mongoose = require('mongoose')
 
 const Post = require('../models/Post')
 
-const min_score = 1500
+const min_score = 500
+const top_only = true
 const approved_domains = ['i.imgur.com', 'i.redd.it']
 const approved_ext = ['jpg', 'png', 'gif', 'jpeg', 'JPG', 'PNG']
 
@@ -19,12 +20,12 @@ const subs = [
   'unexpected', 'dankmemes',
   'photoshopbattles', 'crappydesign',
   'nononono', 'nonononoyes',
-  'yesyesyesno', 'anormaldayinrussia',
+  'yesyesyesyesno', 'anormaldayinrussia',
   'madlads', 'funny', 'aww', 'gifs',
   'earthporn', 'space', 'gadgets', 'sports',
   'food', 'dataisbeautiful', 'art', 'woahdude',
   'osha', 'techsupportgore', 'wellthatsucks',
-  'wholesomememes', 'wtf', 'fellowkids'
+  'wholesomememes', 'wtf', 'fellowkids',
   'ineeeedit', 'ofcoursethatsathing',
   'crappyoffbrands', 'blackpeopletwitter',
   'whitepeopletwitter', 'blackpeoplegifs',
@@ -37,10 +38,11 @@ const subs = [
   'quityourbullshit', 'youseeingthisshit',
   'thisismylifenow', 'holdmybeer', 'holdmycosmo',
   'im14andthisisdeep', 'gifsthatkeepongiving',
-  'perfectloops', 'cinemagraphs', 'sweatypalms'
+  'perfectloops', 'cinemagraphs', 'sweatypalms',
+  'spacex'
 ]
 
-collect(30, subs)
+collect(50, subs)
 
 function collect(pages, subs) {
   let ids = []
@@ -49,7 +51,8 @@ function collect(pages, subs) {
     for (const post of posts) {
       ids.push(post.id)
     }
-    for (const sub of subs) {
+    for (let sub of subs) {
+      if (top_only) sub += '/top'
       collect_posts(pages, sub, '', 0, ids, count => {
         console.log(`${count} posts added from r/${sub}.`)
       })
@@ -66,6 +69,8 @@ function collect_posts(pages, sub, after, count, ids, cb) {
 
 function collect_from_page(sub, after, ids, cb) {
   if (after != '') after = '?after=' + after
+  if (top_only && after == '') after += '?sort=top&t=all'
+  if (top_only && after != '') after += '&sort=top&t=all'
   request(`https://www.reddit.com/r/${sub}.json${after}`, (err, response, body) => {
     if (err) throw err
     const parsed = JSON.parse(body).data

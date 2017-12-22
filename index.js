@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const uuidv4 = require('uuid/v4')
 const path = require('path')
 const mongoose = require('mongoose')
+const crypto = require('crypto')
 const config = require('./config.json')
 
 const app = express()
@@ -20,7 +21,7 @@ if (!config.dev) {
 const port = 3000
 
 let options = {
-  secret: 'very-secure-random-secret-key-42',
+  secret: crypto.randomBytes(64).toString('hex'),
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false }
