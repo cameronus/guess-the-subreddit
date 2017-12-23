@@ -9,17 +9,15 @@ subreddit just by looking at a post.
 3. Loading animation
 4. Difficulty (Normal: With title, Hard: without)
 5. Expand title to view overflowed titles
-6. Game over screen redesign
-7. Add btc donation address
-8. Support video
-9. Review design
-10. Code optimization and documentation
-11. Prevent cheating in competetive mode
+6. Add btc donation address
+7. Support video
+8. Code optimization and documentation
+9. Prevent cheating in competetive mode
   - No image url
   - No screenshots or pictures
   - Does not allow user to leave the screen
   - No saving images
-12. Rank percentile score
+10. Rank percentile score
 
 ## Subreddits
 1. all
