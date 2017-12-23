@@ -38,7 +38,13 @@ function get_challenge(cb) {
         // end loading
         cb()
         $('#guess').focus()
-        $('#title-container').width($('#img').width() - 24)
+        const element = $('#img').clone()
+        element.css({ visibility: 'hidden' })
+        $('body').append(element)
+        const img_width = element.width()
+        element.remove()
+
+        $('#title-container').width(img_width - 24)
       })
       $('#img').one('error', () => {
         return server_error()
