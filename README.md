@@ -9,12 +9,11 @@ subreddit just by looking at a post.
 3. Loading animation
 4. Difficulty (Normal: With title, Hard: without)
 5. Expand title to view overflowed titles
-6. Start screen redesign
-7. Game over screen redesign
-8. Add btc donation address
-9. Support video
-10. Review design
-11. Code optimization and documentation
+6. Game over screen redesign
+7. Add btc donation address
+8. Support video
+9. Review design
+10. Code optimization and documentation
 
 ## Subreddits
 1. all

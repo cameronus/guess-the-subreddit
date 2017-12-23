@@ -85,6 +85,16 @@ footer h5 {
   margin-left: 10px;
 }
 
+.slide-left {
+  animation: slide-left 1.5s;
+}
+@keyframes slide-left {
+  100% {
+    opacity: 0;
+    transform: translateX(-100vw);
+  }
+}
+
 #stats {
   height: 37px;
   display: none;
