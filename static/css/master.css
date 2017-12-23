@@ -85,10 +85,10 @@ footer h5 {
   margin-left: 10px;
 }
 
-.slide-left {
-  animation: slide-left 1.5s;
+.slide-left-out {
+  animation: slide-left-out 1.5s;
 }
-@keyframes slide-left {
+@keyframes slide-left-out {
   100% {
     opacity: 0;
     transform: translateX(-100vw);
