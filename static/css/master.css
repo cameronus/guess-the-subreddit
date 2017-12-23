@@ -240,8 +240,8 @@ footer h5 {
   margin-top: 5vh;
   width: 80vw;
   display: grid;
-  grid-template-columns: 300px calc(75vw - 380px);
-  grid-template-rows: calc(40vh - 60px) calc(40vh - 60px);
+  grid-template-columns: calc(37.5vh - 55px) calc(80vw - 42.5vh - 30px);
+  grid-template-rows: calc(37.5vh - 55px) calc(37.5vh - 55px);
   grid-gap: 5vh 5vh;
 }
 #easy {
@@ -295,7 +295,7 @@ footer h5 {
 }
 #leaderboard {
   width: 100%;
-  height: calc(85vh - 200px);
+  height: calc(75vh - 150);
   border-radius: 8px;
   padding: 40px;
   grid-row-end: span 2;
@@ -336,9 +336,6 @@ footer h5 {
   font-size: 18px;
   font-weight: 400;
   text-align: right;
-}
-#username {
-
 }
 
 #img {
