@@ -1,21 +1,25 @@
-let gamemode
+;let gamemode
+
+var focus, img
 
 $(document).ready(() => {
   $('#guess').keypress((e) => {
   	if(e.keyCode == 13) guess()
   })
+  focus = document.getElementById('focus')
+  img = document.getElementById('img')
 })
 
 function start(mode) {
   gamemode = mode
   get_challenge(() => {
-    $('#start-wrapper').addClass('slide-left-out')
+    document.getElementById('start-wrapper').className = 'slide-left-out'
     setTimeout(() => {
-      $('#start-wrapper').hide()
-      $('#focus').addClass('slide-left-in')
-      $('#focus').show()
-      $('#stats').show()
-    }, 300)
+      document.getElementById('start-wrapper').style.display = 'none'
+      focus.className = 'slide-left-in'
+      focus.style.display = 'block'
+      document.getElementById('stats').style.display = 'block'
+    }, 400)
   })
 }
 
@@ -25,17 +29,17 @@ function get_challenge(cb) {
     type: 'get',
     url: '/api/post',
     success: response => {
-      $('#lives-number').html(response.lives)
-      $('#score-number').html(response.score)
+      document.getElementById('lives-number').innerHTML = response.lives
+      document.getElementById('score-number').innerHTML = response.score
       if (response.lives == 0) return game_over()
-      $('#expand').attr('href', response.url)
-      $('#img').attr('src', response.url)
-      $('#title-bg').attr('src', response.url)
-      $('#stats-bg').attr('src', response.url)
-      $('#nav-bg').attr('src', response.url)
-      $('#title').html(response.title)
-      $('#title').prop('title', response.title)
-      $('#img').one('load', () => {
+      document.getElementById('expand').href = response.url
+      img.src = response.url
+      document.getElementById('title-bg').src = response.url
+      document.getElementById('stats-bg').src = response.url
+      document.getElementById('nav-bg').src = response.url
+      document.getElementById('title').innerHTML = response.title
+      document.getElementById('title').title = response.title
+      img.onload = function() {
         // end loading
         cb()
         $('#guess').focus()
@@ -45,11 +49,11 @@ function get_challenge(cb) {
         const img_width = element.width()
         element.remove()
 
-        $('#title-container').width(img_width - 24)
-      })
-      $('#img').one('error', () => {
+        document.getElementById('title-container').style.width = img_width - 24
+      }
+      img.onerror = function() {
         return server_error()
-      })
+      }
     },
     error: err => server_error(err)
   })
@@ -65,9 +69,9 @@ function guess() {
       subreddit: subreddit
     },
     success: response => {
-      $('#guess').val('')
-      $('#lives-number').html(response.lives)
-      $('#score-number').html(response.score)
+      document.getElementById('guess').value = ''
+      document.getElementById('lives-number').innerHTML = response.lives
+      document.getElementById('score-number').innerHTML = response.score
       if (response.lives == 0) return game_over()
       if (!response.correct) return incorrect()
       correct()
@@ -124,16 +128,15 @@ function game_over() {
       transitionIn: 'fadeInDown'
   })
   const points = $('#score-number').html()
-  $('#skip').prop('disabled', true)
-  $('#check').prop('disabled', true)
-  $('#focus').removeClass('slide-left-in')
-  $('#focus').addClass('slide-left-out')
-  $('#gameover').addClass('slide-left-in')
-  $('#gameover').show()
+  document.getElementById('skip').setAttribute('disabled', true)
+  document.getElementById('check').setAttribute('disabled', true)
+  focus.classList.remove('slide-left-in')
+  focus.classList.add('slide-left-out')
+  document.getElementById('gameover').classList.add('slide-left-in')
+  document.getElementById('gameover').style.display = 'grid'
   setTimeout(() => {
-    $('#focus').hide()
-    $('#gameover').css("display", "grid")
-  }, 300)
+    focus.style.display = 'none'
+  }, 400)
 }
 
 function server_error(err) {
