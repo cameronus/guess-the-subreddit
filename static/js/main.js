@@ -124,6 +124,7 @@ function game_over() {
       transitionIn: 'fadeInDown'
   })
   const points = $('#score-number').html()
+  $('#guess').blur()
   $('#skip').prop('disabled', true)
   $('#check').prop('disabled', true)
   $('#focus').removeClass('slide-left-in')
