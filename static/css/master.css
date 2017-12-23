@@ -265,7 +265,7 @@ footer h5 {
   border-radius: 8px;
   outline: none;
   font-family: 'Lato', sans-serif;
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 900;
   letter-spacing: 5px;
   color: white;
@@ -285,7 +285,7 @@ footer h5 {
   border-radius: 8px;
   outline: none;
   font-family: 'Lato', sans-serif;
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 900;
   letter-spacing: 5px;
   color: white;
@@ -297,10 +297,10 @@ footer h5 {
   background-color: rgba(0, 0, 0, 0.05);
 }
 #start-bg {
-  width: 200%;
-  height: 200%;
-  margin-left: -100%;
-  margin-top: -100%;
+  width: 250%;
+  height: 250%;
+  margin-left: -125%;
+  margin-top: -125%;
   z-index: -1;
   position: absolute;
   filter: blur(50px) saturate(150%);
@@ -351,7 +351,7 @@ footer h5 {
 }
 
 #img {
-  max-height: calc(90vh - 190px);
+  max-height: calc(90vh - 230px);
   min-width: 20px;
   max-width: 80vw;
   object-fit: cover;
