@@ -1,14 +1,20 @@
+let gamemode
+
 $(document).ready(() => {
   $('#guess').keypress((e) => {
   	if(e.keyCode == 13) guess()
   })
 })
 
-function start() {
+function start(mode) {
+  gamemode = mode
   get_challenge(() => {
-    $('#display').hide()
-    $('#focus').show()
-    $('#stats').show()
+    $('#start-wrapper').addClass('slide-left-out')
+    setTimeout(() => {
+      $('#start-wrapper').hide()
+      $('#focus').show()
+      $('#stats').show()
+    }, 300)
   })
 }
 
@@ -16,7 +22,7 @@ function get_challenge(cb) {
   // start loading
   $.ajax({
     type: 'get',
-    url: '/api',
+    url: '/api/post',
     success: response => {
       $('#lives-number').html(response.lives)
       $('#score-number').html(response.score)
@@ -47,7 +53,7 @@ function guess() {
   if (subreddit == '') return enter_guess()
   $.ajax({
     type: 'post',
-    url: '/api',
+    url: '/api/post',
     data: {
       subreddit: subreddit
     },

@@ -25,28 +25,28 @@
       <a id="home" href="/"><h1>Guess the Subreddit</h1></a>
       <img src="img/nav.jpg" id="nav-bg">
     </nav>
-    <div id="focus-wrapper">
-      <div id="start-wrapper">
-        <button id="easy" onclick="display(0)">EASY
-          <img src="img/easy.jpg" id="start-bg">
-        </button>
-        <div id="leaderboard">
-          <h1>Leaderboard</h1>
-          <table>
-            <tr>
-              <td class="player-rank">1</td>
-              <td class="player-username">username</td>
-              <td class="player-points">0</td>
-            </tr>
-            <tr>
-              <td><td>
-            </tr>
-          </table>
-        </div>
-        <button id="hard" onclick="display(1)">HARD
-          <img src="img/hard.jpg" id="start-bg">
-        </button>
+    <div id="start-wrapper">
+      <button id="easy" onclick="start(0)">EASY
+        <img src="img/easy.jpg" id="start-bg">
+      </button>
+      <div id="leaderboard">
+        <h1>Leaderboard</h1>
+        <table>
+          <tr>
+            <td class="player-rank">1</td>
+            <td class="player-username">username</td>
+            <td class="player-points">0</td>
+          </tr>
+          <tr>
+            <td><td>
+          </tr>
+        </table>
       </div>
+      <button id="hard" onclick="start(1)">HARD
+        <img src="img/hard.jpg" id="start-bg">
+      </button>
+    </div>
+    <div id="focus-wrapper">
       <div id="focus-container">
         <div id="focus">
           <div id="stats">

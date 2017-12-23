@@ -86,7 +86,7 @@ footer h5 {
 }
 
 .slide-left-out {
-  animation: slide-left-out 1.5s;
+  animation: slide-left-out 0.75s;
 }
 @keyframes slide-left-out {
   100% {
@@ -247,7 +247,9 @@ footer h5 {
 }
 
 #start-wrapper {
-  margin-top: 5vh;
+  margin-top: 10vh;
+  margin-left: auto;
+  margin-right: auto;
   width: 80vw;
   display: grid;
   grid-template-columns: calc(37.5vh - 55px) calc(80vw - 42.5vh - 30px);

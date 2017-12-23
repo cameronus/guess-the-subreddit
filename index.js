@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/index.html'))
 })
 
-app.get('/api', (req, res) => {
+app.get('/api/post', (req, res) => {
   let sess = req.session
   if (sess.lives == 0) return res.sendStatus(412)
   if (config.dev) {
@@ -77,7 +77,7 @@ app.get('/api', (req, res) => {
   })
 })
 
-app.post('/api', (req, res) => {
+app.post('/api/post', (req, res) => {
   let sess = req.session
   if (sess.lives == 0) return res.sendStatus(412)
   if (config.dev) {
