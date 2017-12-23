@@ -23,12 +23,30 @@
     </div>
     <nav>
       <a id="home" href="/"><h1>Guess the Subreddit</h1></a>
-      <img src="img/display.jpg" id="nav-bg">
+      <img src="img/nav.jpg" id="nav-bg">
     </nav>
     <div id="focus-wrapper">
-      <button id="display" onclick="start()">START
-        <img src="img/display.jpg" id="display-bg">
-      </button>
+      <div id="start-wrapper">
+        <button id="easy" onclick="display(0)">EASY
+          <img src="img/easy.jpg" id="start-bg">
+        </button>
+        <div id="leaderboard">
+          <h1>Leaderboard</h1>
+          <table>
+            <tr>
+              <td class="player-rank">1</td>
+              <td class="player-username">username</td>
+              <td class="player-points">0</td>
+            </tr>
+            <tr>
+              <td><td>
+            </tr>
+          </table>
+        </div>
+        <button id="hard" onclick="display(1)">HARD
+          <img src="img/hard.jpg" id="start-bg">
+        </button>
+      </div>
       <div id="focus-container">
         <div id="focus">
           <div id="stats">
@@ -44,7 +62,7 @@
             <img src="" id="stats-bg">
           </div>
           <a href="" target="_blank" id="expand"></a>
-          <img src="" id="img" draggable="false">
+          <img src="img/test.jpg" id="img" draggable="false">
           <div id="title-bar">
             <div id="title-container">
               <h3 title="" id="title">Title here...</h3>
