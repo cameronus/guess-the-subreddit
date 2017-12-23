@@ -17,12 +17,14 @@
       <img src="img/nav.jpg" id="nav-bg">
     </nav>
     <div id="gameover">
+      <button id="restart" onclick="window.location.reload(false)">RESTART
+        <img src="img/restart.jpg" id="restart-bg">
+      </button>
       <div id="gameover-container">
         <h1 id="gameover-title">GAME OVER</h1>
-        <p id="final-score">0 Points</p>
-        <button id="restart" onclick="window.location.reload(false)">RESTART
-          <img src="img/display.jpg" id="restart-bg">
-        </button>
+        <div id="final-score-container">
+          <p id="final-score">0</p>
+        </div>
       </div>
     </div>
     <div id="start-wrapper">

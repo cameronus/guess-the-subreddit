@@ -12,6 +12,7 @@ function start(mode) {
     $('#start-wrapper').addClass('slide-left-out')
     setTimeout(() => {
       $('#start-wrapper').hide()
+      $('#focus').addClass('slide-left-in')
       $('#focus').show()
       $('#stats').show()
     }, 300)
@@ -125,15 +126,14 @@ function game_over() {
   const points = $('#score-number').html()
   $('#skip').prop('disabled', true)
   $('#check').prop('disabled', true)
-  $('#skip').css('cursor', 'default')
-  $('#check').css('cursor', 'default')
-  $('#guess').css('cursor', 'default')
-  $('#home').css('cursor', 'default')
-  $('#final-score').html(points == 1 ? '1 POINT' : points + ' POINTS')
-  $('#guess').blur()
-  $('#gameover').nextAll().css('filter', 'blur(40px)')
-  $('#gameover').nextAll().css('user-select', 'none')
+  $('#focus').removeClass('slide-left-in')
+  $('#focus').addClass('slide-left-out')
+  $('#gameover').addClass('slide-left-in')
   $('#gameover').show()
+  setTimeout(() => {
+    $('#focus').hide()
+    $('#gameover').css("display", "grid")
+  }, 300)
 }
 
 function server_error(err) {

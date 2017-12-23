@@ -2,6 +2,7 @@ body {
   margin: 0px;
   padding: 0px;
   background-color: #ddd;
+  overflow-x: hidden;
 }
 h1 {
   font-family: 'Lato', sans-serif;
@@ -94,6 +95,15 @@ footer h5 {
     transform: translateX(-100vw);
   }
 }
+.slide-left-in {
+  animation: slide-left-in 0.75s;
+}
+@keyframes slide-left-in {
+  0% {
+    opacity: 0;
+    transform: translateX(100vw);
+  }
+}
 
 #stats {
   height: 37px;
@@ -150,72 +160,78 @@ footer h5 {
 }
 
 #gameover {
-  padding: 20px;
-  border-radius: 8px;
-  width: 400px;
+  width: 80vw;
   height: 400px;
-  margin-top: calc(50vh - 275px);
-  position: absolute;
+  margin: 0px auto;
+  margin-top: calc(45vh - 200px);
   left: calc(50vw - 220px);
   display: none;
-  background-color: white;
-  z-index: 2000;
-  box-shadow: rgba(68, 68, 100, 0.2) 0px 2px 2px,
-              rgba(68, 68, 100, 0.2) 0px 4px 4px,
-              rgba(68, 68, 100, 0.2) 0px 8px 8px;
+  grid-template-columns: 400px calc(80vw - 480px - 5vh);
+  grid-template-rows: 400px;
+  grid-gap: 0 5vh;
 }
 #gameover-container {
-  text-align: center;
-  margin-top: 25%;
+  background-color: white;
+  border-radius: 8px;
+  padding: 40px;
+  grid-column-start: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 40px calc(280px - 5vh);
+  grid-gap: 5vh 5vh;
+  width: 100%;
+  box-shadow: rgba(68, 68, 100, 0.2) 0px 2px 2px,
+              rgba(68, 68, 100, 0.2) 0px 4px 4px;
 }
 #gameover-container h1 {
-  color: black;
-  font-size: 36px;
-  margin-top: 8px;
+  color: #303030;
+  font-size: 30px;
+  margin: 0px;
+  height: 40px;
+  grid-column-end: span 3;
+  border-bottom: 1.5px #ddd solid;
 }
-#gameover-title {
-  font-weight: 900;
+#final-score-container {
 }
 #final-score {
   font-family: 'Lato', sans-serif;
-  font-size: 28px;
+  font-size: 160px;
   font-weight: 900;
-  color: black;
+  color: #303030;
   letter-spacing: 2px;
-  margin-top: 0px;
+  text-align: center;
+  margin-top: 15px;
 }
 #restart {
-  width: 200px;
-  height: 75px;
-  margin-top: 34px;
+  width: 400px;
+  height: 400px;
   font-family: 'Lato', sans-serif;
   font-size: 25px;
   font-weight: 900;
   letter-spacing: 5px;
   color: white;
   cursor: pointer;
+  position: relative;
   transition: .2s all;
   background-color: rgba(0, 0, 0, .15);
   overflow: hidden;
-  position: relative;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   outline: none;
   box-shadow: rgba(68, 68, 100, 0.2) 0px 2px 2px,
-              rgba(68, 68, 100, 0.2) 0px 4px 4px,
-              rgba(68, 68, 100, 0.2) 0px 8px 8px;
+              rgba(68, 68, 100, 0.2) 0px 4px 4px;
 }
 #restart:hover {
   background-color: rgba(0, 0, 0, 0.1)
 }
 #restart-bg {
-  width: 150%;
-  height: 175%;
-  margin-left: -90%;
-  margin-top: -20%;
+  width: 250%;
+  height: 250%;
+  margin-left: -125%;
+  margin-top: -125%;
   z-index: -1;
   position: absolute;
-  filter: blur(30px);
+  filter: blur(50px) saturate(150%);
 }
 
 #focus-wrapper {
@@ -249,7 +265,7 @@ footer h5 {
   margin-right: auto;
   width: 80vw;
   display: grid;
-  grid-template-columns: calc(37.5vh - 55px) calc(80vw - 42.5vh - 30px);
+  grid-template-columns: calc(37.5vh - 55px) calc(80vw - 42.5vh - 25px);
   grid-template-rows: calc(37.5vh - 55px) calc(37.5vh - 55px);
   grid-gap: 5vh 5vh;
 }
@@ -258,7 +274,7 @@ footer h5 {
   background-color: rgba(0, 0, 0, 0.15);
   overflow: hidden;
   position: relative;
-  border:none;
+  border: none;
   border-radius: 8px;
   outline: none;
   font-family: 'Lato', sans-serif;
