@@ -101,15 +101,21 @@ footer h5 {
 @keyframes slide-left-in {
   0% {
     opacity: 0;
-    transform: translateX(100vw);
+    transform: translateX(80vw);
   }
 }
 
+#game-wrapper {
+  margin-top: 5vh;
+  margin-left: 10vw;
+  display: grid;
+  grid-template-columns: 80vw 80vw 80vw;
+  grid-template-rows: 80vh;
+  grid-gap: 0 20vw;
+}
+
 #start-wrapper {
-  margin-top: 10vh;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80vw;
+  align-self: center;
   display: grid;
   grid-template-columns: calc(37.5vh - 55px) calc(80vw - 42.5vh - 25px);
   grid-template-rows: calc(37.5vh - 55px) calc(37.5vh - 55px);
@@ -210,14 +216,9 @@ footer h5 {
 }
 
 #gameover {
-  width: 80vw;
-  height: 400px;
-  margin: 0px auto;
-  margin-top: calc(45vh - 240px);
-  left: 10vw;
-  position: absolute;
-  display: none;
-  grid-template-columns: 400px calc(80vw - 480px - 5vh);
+  align-self: center;
+  display: grid;
+  grid-template-columns: 400px calc(80vw - 400px - 5vh);
   grid-template-rows: 400px;
   grid-gap: 0 5vh;
 }
@@ -230,7 +231,6 @@ footer h5 {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 50px calc(260px - 5vh) 26px;
   grid-gap: 0vh 5vh;
-  width: 100%;
   box-shadow: rgba(68, 68, 100, 0.2) 0px 2px 2px,
               rgba(68, 68, 100, 0.2) 0px 4px 4px;
 }
@@ -295,21 +295,17 @@ footer h5 {
 }
 
 #focus-wrapper {
-  margin: 0px auto;
-  margin-top: 5vh;
   justify-content: center;
   display: flex;
 }
 #focus {
   min-width: 280px;
   min-height: 20px;
-  max-height: 90vh;
   max-width: 80vw;
   position: relative;
   border-radius: 8px;
   overflow: hidden;
   transition: .4s all;
-  display: none;
   box-shadow: rgba(68, 68, 100, 0.2) 0px 2px 2px,
               rgba(68, 68, 100, 0.2) 0px 4px 4px,
               rgba(68, 68, 100, 0.2) 0px 8px 8px;
@@ -317,7 +313,6 @@ footer h5 {
 
 #stats {
   height: 37px;
-  display: none;
   position: relative;
   overflow: hidden;
   background-color: rgba(0, 0, 0, .1);
@@ -370,7 +365,7 @@ footer h5 {
 }
 
 #img {
-  max-height: calc(90vh - 230px);
+  max-height: calc(80vh - 140px);
   min-width: 20px;
   max-width: 80vw;
   object-fit: cover;

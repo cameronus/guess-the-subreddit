@@ -16,67 +16,69 @@
       <a id="home" href="/"><h1>Guess the Subreddit</h1></a>
       <img src="img/nav.jpg" id="nav-bg">
     </nav>
-    <div id="gameover">
-      <button id="restart" onclick="window.location.reload(false)">RESTART
-        <img src="img/restart.jpg" id="restart-bg">
-      </button>
-      <div id="gameover-container">
-        <h1 id="gameover-title">GAME OVER</h1>
-        <p class="score" id="final-score">0</p>
-        <p class="score" id="final-time">0</p>
-        <p class="score" id="final-percentile">0</p>
-        <p class="score-tag">POINTS</p>
-        <p class="score-tag">MINUTES</p>
-        <p class="score-tag">PERCENTILE</p>
-      </div>
-    </div>
-    <div id="start-wrapper">
-      <button id="easy" onclick="start(0)">CASUAL
-        <img src="img/easy.jpg" id="start-bg">
-      </button>
-      <div id="leaderboard">
-        <h1>Leaderboard</h1>
-        <table>
-          <tr>
-            <td class="player-rank">1</td>
-            <td class="player-username">username</td>
-            <td class="player-points">0</td>
-          </tr>
-          <tr>
-            <td><td>
-          </tr>
-        </table>
-      </div>
-      <button id="hard" onclick="start(1)">COMPETETIVE
-        <img src="img/hard.jpg" id="start-bg">
-      </button>
-    </div>
-    <div id="focus-wrapper">
-      <div id="focus">
-        <div id="stats">
-          <div id="left">
-            <h4><span id="lives-number">10</span></h4>
-            <img src="img/life.svg">
-          </div>
-          <div id="right">
-            <h4><span id="score-number">0</span></h4>
-            <img src="img/correct.svg">
-            <button id="skip" onclick="skip()">SKIP</button>
-          </div>
-          <img src="" id="stats-bg">
+    <div id="game-wrapper">
+      <div id="start-wrapper">
+        <button id="easy" onclick="start(0)">CASUAL
+          <img src="img/easy.jpg" id="start-bg">
+        </button>
+        <div id="leaderboard">
+          <h1>Leaderboard</h1>
+          <table>
+            <tr>
+              <td class="player-rank">1</td>
+              <td class="player-username">username</td>
+              <td class="player-points">0</td>
+            </tr>
+            <tr>
+              <td><td>
+            </tr>
+          </table>
         </div>
-        <a href="" target="_blank" id="expand"></a>
-        <img src="img/test.jpg" id="img" draggable="false">
-        <div id="title-bar">
-          <div id="title-container">
-            <h3 title="" id="title">Title here...</h3>
+        <button id="hard" onclick="start(1)">COMPETETIVE
+          <img src="img/hard.jpg" id="start-bg">
+        </button>
+      </div>
+      <div id="focus-wrapper">
+        <div id="focus">
+          <div id="stats">
+            <div id="left">
+              <h4><span id="lives-number">10</span></h4>
+              <img src="img/life.svg">
+            </div>
+            <div id="right">
+              <h4><span id="score-number">0</span></h4>
+              <img src="img/correct.svg">
+              <button id="skip" onclick="skip()">SKIP</button>
+            </div>
+            <img src="" id="stats-bg">
           </div>
-          <img src="" id="title-bg">
+          <a href="" target="_blank" id="expand"></a>
+          <img src="" id="img" draggable="false">
+          <div id="title-bar">
+            <div id="title-container">
+              <h3 title="" id="title">Title here...</h3>
+            </div>
+            <img src="" id="title-bg">
+          </div>
+          <div id="input-bar">
+            <p>r/</p>
+            <input type="text" class="text" id="guess">
+            <span id="check" onclick="guess()"></span>
+          </div>
         </div>
-        <div id="input-bar">
-          <p>r/</p>
-          <input type="text" class="text" id="guess">
-          <span id="check" onclick="guess()"></span>
+      </div>
+      <div id="gameover">
+        <button id="restart" onclick="window.location.reload(false)">RESTART
+          <img src="img/restart.jpg" id="restart-bg">
+        </button>
+        <div id="gameover-container">
+          <h1 id="gameover-title">GAME OVER</h1>
+          <p class="score" id="final-score">0</p>
+          <p class="score" id="final-time">0</p>
+          <p class="score" id="final-percentile">0</p>
+          <p class="score-tag">POINTS</p>
+          <p class="score-tag">MINUTES</p>
+          <p class="score-tag">PERCENTILE</p>
         </div>
       </div>
     </div>

@@ -1,25 +1,18 @@
 ;let gamemode
 
-var focus, img
+var img
 
 $(document).ready(() => {
   $('#guess').keypress((e) => {
   	if(e.keyCode == 13) guess()
   })
-  focus = document.getElementById('focus')
   img = document.getElementById('img')
 })
 
 function start(mode) {
   gamemode = mode
   get_challenge(() => {
-    document.getElementById('start-wrapper').className = 'slide-left-out'
-    setTimeout(() => {
-      document.getElementById('start-wrapper').style.display = 'none'
-      focus.className = 'slide-left-in'
-      focus.style.display = 'block'
-      document.getElementById('stats').style.display = 'block'
-    }, 400)
+    document.getElementById('game-wrapper').style.marginLeft = '-90vw'
   })
 }
 
@@ -36,10 +29,9 @@ function get_challenge(cb) {
       img.src = response.url
       document.getElementById('title-bg').src = response.url
       document.getElementById('stats-bg').src = response.url
-      document.getElementById('nav-bg').src = response.url
       document.getElementById('title').innerHTML = response.title
       document.getElementById('title').title = response.title
-      img.onload = function() {
+      $('#img').one('load', () => {
         // end loading
         cb()
         $('#guess').focus()
@@ -49,11 +41,11 @@ function get_challenge(cb) {
         const img_width = element.width()
         element.remove()
 
-        document.getElementById('title-container').style.width = img_width - 24
-      }
-      img.onerror = function() {
+        $('#title-container').width(img_width - 24)
+      })
+      $('#img').one('error', () => {
         return server_error()
-      }
+      })
     },
     error: err => server_error(err)
   })
@@ -130,13 +122,7 @@ function game_over() {
   const points = $('#score-number').html()
   document.getElementById('skip').setAttribute('disabled', true)
   document.getElementById('check').setAttribute('disabled', true)
-  focus.classList.remove('slide-left-in')
-  focus.classList.add('slide-left-out')
-  document.getElementById('gameover').classList.add('slide-left-in')
-  document.getElementById('gameover').style.display = 'grid'
-  setTimeout(() => {
-    focus.style.display = 'none'
-  }, 400)
+  document.getElementById('game-wrapper').style.marginLeft = '-190vw'
 }
 
 function server_error(err) {
