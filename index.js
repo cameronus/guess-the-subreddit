@@ -48,12 +48,14 @@ app.get('/', (req, res) => {
 
 app.post('/api/gamemode', (req, res) => {
   let sess = req.session
-  if (!sess.current) return res.sendStatus(422)
+  if (!sess.uid) return res.sendStatus(422)
   if (sess.lives != num_lives || sess.score != 0) return res.sendStatus(412)
   if (sess.gamemode != null) return res.sendStatus(412)
   const data = req.body
-  if (data.gamemode !== 0 && data.gamemode !== 1) return res.sendStatus(400)
-  sess.gamemode = data.gamemode
+  const gamemode = parseInt(data.gamemode)
+  if (gamemode !== 0 && gamemode !== 1) return res.sendStatus(400)
+  sess.gamemode = gamemode
+  res.sendStatus(200)
 })
 
 app.get('/api/question', (req, res) => {

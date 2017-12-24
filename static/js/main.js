@@ -1,5 +1,3 @@
-let gamemode
-
 let img
 
 $(document).ready(() => {
@@ -24,9 +22,24 @@ function requestFullScreen() {
 }
 
 function start(mode) {
-  gamemode = mode
-  get_challenge(() => {
-    $('#start-wrapper').hide()
+  set_gamemode(mode, () => {
+    get_challenge(() => {
+      $('#start-wrapper').hide()
+    })
+  })
+}
+
+function set_gamemode(mode, cb) {
+  $.ajax({
+    type: 'post',
+    url: '/api/gamemode',
+    data: {
+      gamemode: mode
+    },
+    success: response => {
+      cb()
+    },
+    error: err => server_error(err)
   })
 }
 
@@ -34,7 +47,7 @@ function get_challenge(cb) {
   // start loading
   $.ajax({
     type: 'get',
-    url: '/api/post',
+    url: '/api/question',
     success: response => {
       $('#lives-number').html(response.lives)
       $('#score-number').html(response.score)
@@ -43,6 +56,7 @@ function get_challenge(cb) {
       img.src = response.url
       document.getElementById('title-bg').src = response.url
       document.getElementById('stats-bg').src = response.url
+      if (response.title == null) $('#title').hide()
       document.getElementById('title').innerHTML = response.title
       document.getElementById('title').title = response.title
       $('#img').one('load', () => {
@@ -70,7 +84,7 @@ function guess() {
   if (subreddit == '') return enter_guess()
   $.ajax({
     type: 'post',
-    url: '/api/post',
+    url: '/api/question',
     data: {
       subreddit: subreddit
     },
