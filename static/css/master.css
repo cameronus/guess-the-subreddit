@@ -1,7 +1,9 @@
+html {
+  background-color: #ddd;
+}
 body {
   margin: 0px;
   padding: 0px;
-  background-color: #ddd;
   overflow-x: hidden;
 }
 h1 {
