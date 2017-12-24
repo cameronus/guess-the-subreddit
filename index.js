@@ -49,6 +49,7 @@ app.get('/api/post', (req, res) => {
   if (sess.lives == 0) return res.sendStatus(412)
   if (config.dev) {
     sess.lives -= 1
+    sess.score += 1
     return res.json({
       title: config.post.title,
       url: config.post.url,
