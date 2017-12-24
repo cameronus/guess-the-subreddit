@@ -83,9 +83,12 @@ app.get('/api/question', (req, res) => {
     if (err) return res.sendStatus(500)
     const post = rand[0]
     sess.current = post.id
+    const id_hash = crypto.createHash('sha256').update(post.id).digest('hex')
+    const file_ext = path.extname(post.url)
+    const url = req.protocol + '://' + req.headers.host + '/posts/' + id_hash + file_ext
     res.json({
       title: sess.gamemode == 0 ? post.title : null,
-      url: post.url,
+      url: url,
       score: sess.score,
       lives: sess.lives
     })

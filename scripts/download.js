@@ -1,7 +1,11 @@
+const crypto = require('crypto')
 const mongoose = require('mongoose')
 const request = require('request')
 const { exec } = require('child_process')
 const cluster = require('cluster')
+const path = require('path')
+const fs = require('fs')
+const dir = path.join(__dirname, '../static/posts') + '/'
 
 const Post = require('../models/Post')
 
@@ -11,18 +15,13 @@ mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/guess-the-subreddit')
 
 if (cluster.isMaster) {
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir)
   Post.find({}, (err, posts) => {
     if (err) throw err
     const chunks = splitUp(posts, num_workers)
     for (const chunk of chunks) {
       const worker = cluster.fork()
       worker.send(chunk)
-       worker.on('message', id => {
-         console.log(id, 'being removed')
-         Post.remove({ id: id }, (err, removed) => {
-           console.log(id, 'successfully removed')
-         })
-       })
     }
   })
 } else {
@@ -35,15 +34,21 @@ if (cluster.isMaster) {
 function check(posts) {
   if (posts.length == 0) return console.log('done')
   const post = posts.shift()
-  exec(`curl -o /dev/null --silent --head --write-out '%{http_code}\n' ${post.url}`, (err, stdout, stderr) => {
-    if (err) throw err
-    console.log('checked', post.id)
-    const code = stdout.trim()
-    if (code == 404 || code == 302) {
-      console.log(post.id, 'is missing -', posts.length, 'left')
-      process.send(post.id)
+  const id_hash = crypto.createHash('sha256').update(post.id).digest('hex')
+  const file_ext = path.extname(post.url)
+  fs.stat(dir + id_hash + file_ext, (err, stat) => {
+    if (err != null) {
+      const cmd = `wget ${post.url} -O ${dir}${id_hash}${file_ext}`
+      console.log('downloading', post.id, 'with', cmd)
+      exec(cmd, (err, stdout, stderr) => {
+        if (err) throw err
+        console.log('downloaded', post.id)
+        check(posts)
+      })
+    } else {
+      console.log(post.id, 'already exists')
+      check(posts)
     }
-    check(posts)
   })
 }
 
