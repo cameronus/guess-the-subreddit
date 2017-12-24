@@ -123,6 +123,7 @@ function game_over() {
   document.getElementById('skip').setAttribute('disabled', true)
   document.getElementById('check').setAttribute('disabled', true)
   document.getElementById('game-wrapper').style.marginLeft = '-190vw'
+  document.getElementById('final-score').innerHTML = response.score
 }
 
 function server_error(err) {
