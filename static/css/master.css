@@ -216,6 +216,7 @@ footer h5 {
 }
 
 #gameover {
+  margin-top: -40px;
   align-self: center;
   display: grid;
   grid-template-columns: 400px calc(80vw - 400px - 5vh);
