@@ -1,4 +1,4 @@
-;let gamemode
+let gamemode
 
 var img
 
@@ -22,8 +22,8 @@ function get_challenge(cb) {
     type: 'get',
     url: '/api/post',
     success: response => {
-      document.getElementById('lives-number').innerHTML = response.lives
-      document.getElementById('score-number').innerHTML = response.score
+      $('#lives-number').html(response.lives)
+      $('#score-number').html(response.score)
       if (response.lives == 0) return game_over()
       document.getElementById('expand').href = response.url
       img.src = response.url
@@ -61,9 +61,9 @@ function guess() {
       subreddit: subreddit
     },
     success: response => {
-      document.getElementById('guess').value = ''
-      document.getElementById('lives-number').innerHTML = response.lives
-      document.getElementById('score-number').innerHTML = response.score
+      $('#guess').val('')
+      $('#lives-number').html(response.lives)
+      $('#score-number').html(response.score)
       if (response.lives == 0) return game_over()
       if (!response.correct) return incorrect()
       correct()
