@@ -19,6 +19,7 @@ if (!config.dev) {
 }
 
 const port = 3000
+const num_lives = 10
 
 let options = {
   secret: crypto.randomBytes(64).toString('hex'),
@@ -38,24 +39,31 @@ app.use(express.static('static'))
 app.get('/', (req, res) => {
   let sess = req.session
   sess.uid = uuidv4()
-  sess.lives = 10
+  sess.lives = num_lives
   sess.score = 0
   sess.current = null
+  sess.gamemode = null
   res.sendFile(path.join(__dirname + '/index.html'))
 })
 
 app.post('/api/gamemode', (req, res) => {
   let sess = req.session
+  if (!sess.current) return res.sendStatus(422)
+  if (sess.lives != num_lives || sess.score != 0) return res.sendStatus(412)
+  if (sess.gamemode != null) return res.sendStatus(412)
+  const data = req.body
+  if (data.gamemode !== 0 && data.gamemode !== 1) return res.sendStatus(400)
+  sess.gamemode = data.gamemode
 })
 
-app.get('/api/post', (req, res) => {
+app.get('/api/question', (req, res) => {
   let sess = req.session
   if (sess.lives == 0) return res.sendStatus(412)
   if (config.dev) {
     sess.lives -= 1
     sess.score += 1
     return res.json({
-      title: config.post.title,
+      title: sess.gamemode == 0 ? config.post.title : null,
       url: config.post.url,
       score: sess.score,
       lives: sess.lives
@@ -74,7 +82,7 @@ app.get('/api/post', (req, res) => {
     const post = rand[0]
     sess.current = post.id
     res.json({
-      title: post.title,
+      title: sess.gamemode == 0 ? post.title : null,
       url: post.url,
       score: sess.score,
       lives: sess.lives
@@ -82,7 +90,7 @@ app.get('/api/post', (req, res) => {
   })
 })
 
-app.post('/api/post', (req, res) => {
+app.post('/api/question', (req, res) => {
   let sess = req.session
   if (sess.lives == 0) return res.sendStatus(412)
   if (config.dev) {
@@ -97,7 +105,7 @@ app.post('/api/post', (req, res) => {
   const data = req.body
   if (!data.subreddit) return res.sendStatus(422)
   Post.find({ id: sess.current }, (err, post) => {
-    if (err) return res.sendStatus(500)
+    if (err || post.length == 0) return res.sendStatus(500)
     const correct = post[0].subreddit.toLowerCase() == data.subreddit.toLowerCase()
     correct ? sess.score += 1 : sess.lives -= 1
     if (correct) sess.current = null

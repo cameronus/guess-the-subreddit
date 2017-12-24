@@ -10,23 +10,15 @@ $(document).ready(() => {
 })
 
 function requestFullScreen() {
-
-  var el = document.documentElement;
-
-  // Supports most browsers and their versions.
-  var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen
-  || el.mozRequestFullScreen || el.msRequestFullScreen;
-
+  const el = document.documentElement
+  const requestMethod = el.requestFullScreen || el.webkitRequestFullScreen
+  || el.mozRequestFullScreen || el.msRequestFullScreen
   if (requestMethod) {
-    // Native full screen.
-    requestMethod.call(el);
-  }
-  else if (typeof window.ActiveXObject !== "undefined") {
-    // Older IE.
-    var wscript = new ActiveXObject("WScript.Shell");
-
+    requestMethod.call(el)
+  } else if (typeof window.ActiveXObject !== "undefined") {
+    const wscript = new ActiveXObject("WScript.Shell")
     if (wscript !== null) {
-      wscript.SendKeys("{F11}");
+      wscript.SendKeys("{F11}")
     }
   }
 }
@@ -34,7 +26,7 @@ function requestFullScreen() {
 function start(mode) {
   gamemode = mode
   get_challenge(() => {
-    document.getElementById('game-wrapper').style.marginLeft = '-90vw'
+    $('#start-wrapper').hide()
   })
 }
 
@@ -62,7 +54,8 @@ function get_challenge(cb) {
         $('body').append(element)
         const img_width = element.width()
         element.remove()
-        $('#title').width(img_width - 30)
+
+        $('#title').width(img_width - 24)
       })
       $('#img').one('error', () => {
         return server_error()
@@ -133,6 +126,9 @@ function correct() {
 }
 
 function game_over() {
+  $('#focus-wrapper').hide()
+  $('gameover').show()
+  $('#guess').blur()
   iziToast.error({
       id: 'error',
       title: 'Game Over',
@@ -143,7 +139,6 @@ function game_over() {
   const points = $('#score-number').html()
   document.getElementById('skip').setAttribute('disabled', true)
   document.getElementById('check').setAttribute('disabled', true)
-  document.getElementById('game-wrapper').style.marginLeft = '-190vw'
   document.getElementById('final-score').innerHTML = points
 }
 
