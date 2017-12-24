@@ -62,8 +62,7 @@ function get_challenge(cb) {
         $('body').append(element)
         const img_width = element.width()
         element.remove()
-
-        $('#title-container').width(img_width - 24)
+        $('#title').width(img_width - 30)
       })
       $('#img').one('error', () => {
         return server_error()
