@@ -7,17 +7,12 @@ subreddit just by looking at a post.
 1. Leaderboard
 2. Max time limit for per posts
 3. Loading animation
-4. Difficulty (Normal: With title, Hard: without)
-5. Expand title to view overflowed titles
-6. Add btc donation address
-7. Support video
-8. Code optimization and documentation
-9. Prevent cheating in competetive mode
-  - No image url
-  - No screenshots or pictures
-  - Does not allow user to leave the screen
-  - No saving images
-10. Rank percentile score
+4. Expand title to view overflowed titles
+5. Add btc donation address
+6. Support video
+7. Code optimization and documentation
+8. Enforce fullscreen on competitive mode
+9. Rank percentile score
 
 ## Subreddits
 1. all
