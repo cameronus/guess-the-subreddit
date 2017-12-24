@@ -11,9 +11,10 @@ const config = require('./config.json')
 
 const app = express()
 
-let Post
+let Post, Score
 if (!config.dev) {
   Post = require('./models/Post')
+  Score = require('./models/Score')
   mongoose.Promise = global.Promise
   mongoose.connect('mongodb://localhost/guess-the-subreddit')
 }
@@ -48,7 +49,7 @@ app.get('/', (req, res) => {
 
 app.post('/api/gamemode', (req, res) => {
   let sess = req.session
-  if (!sess.uid) return res.sendStatus(422)
+  if (!sess.uid) return res.sendStatus(401)
   if (sess.lives != num_lives || sess.score != 0) return res.sendStatus(412)
   if (sess.gamemode != null) return res.sendStatus(412)
   const data = req.body
@@ -60,7 +61,9 @@ app.post('/api/gamemode', (req, res) => {
 
 app.get('/api/question', (req, res) => {
   let sess = req.session
+  if (!sess.uid) return res.sendStatus(401)
   if (sess.lives == 0) return res.sendStatus(412)
+  if (sess.gamemode == null) return res.sendStatus(412)
   if (config.dev) {
     sess.lives -= 1
     sess.score += 1
@@ -71,7 +74,6 @@ app.get('/api/question', (req, res) => {
       lives: sess.lives
     })
   }
-  if (!sess.uid) return res.sendStatus(401)
   if (sess.current) {
     sess.lives -= 1
     if (sess.lives == 0) return res.json({
@@ -97,7 +99,10 @@ app.get('/api/question', (req, res) => {
 
 app.post('/api/question', (req, res) => {
   let sess = req.session
+  if (!sess.uid) return res.sendStatus(401)
   if (sess.lives == 0) return res.sendStatus(412)
+  if (sess.gamemode == null) return res.sendStatus(412)
+  if (!sess.current) return res.sendStatus(422)
   if (config.dev) {
     return res.json({
       correct: true,
@@ -105,8 +110,6 @@ app.post('/api/question', (req, res) => {
       lives: sess.lives
     })
   }
-  if (!sess.uid) return res.sendStatus(401)
-  if (!sess.current) return res.sendStatus(422)
   const data = req.body
   if (!data.subreddit) return res.sendStatus(422)
   Post.find({ id: sess.current }, (err, post) => {
@@ -122,4 +125,21 @@ app.post('/api/question', (req, res) => {
   })
 })
 
-app.listen(port, () => console.log('Listening on port 3000.'))
+app.post('/api/leaderboard', (req, res) => {
+  let sess = req.session
+  if (!sess.uid) return res.sendStatus(401)
+  if (!sess.lives == 0) return res.sendStatus(412)
+  if (sess.gamemode != 1) return res.sendStatus(401)
+  const data = req.body
+  if (!data.username) return res.sendStatus(422)
+  const entry = new Score({
+    uid: sess.uid,
+    username: data.username,
+    score: sess.score
+  })
+  entry.save((err, response) => {
+    if (err) throw err
+  })
+})
+
+app.listen(port, () => console.log(`Listening on port ${port}.`))

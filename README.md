@@ -13,6 +13,7 @@ subreddit just by looking at a post.
 7. Code optimization and documentation
 8. Enforce fullscreen on competitive mode
 9. Rank percentile score
+10. Add request validation middleware to reduce redundancy in code
 
 ## Subreddits
 1. all
