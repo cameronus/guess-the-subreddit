@@ -302,7 +302,7 @@ footer h5 {
   min-width: 280px;
   min-height: 20px;
   max-width: 80vw;
-  position: relative;
+  position: absolute;
   border-radius: 8px;
   overflow: hidden;
   transition: .4s all;
