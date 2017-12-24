@@ -1,6 +1,6 @@
 let gamemode
 
-var img
+let img
 
 $(document).ready(() => {
   $('#guess').keypress((e) => {

@@ -44,6 +44,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/index.html'))
 })
 
+app.post('/api/gamemode', (req, res) => {
+  let sess = req.session
+})
+
 app.get('/api/post', (req, res) => {
   let sess = req.session
   if (sess.lives == 0) return res.sendStatus(412)
