@@ -123,6 +123,7 @@ function skip() {
   })
 }
 
+//Sends player score to leaderboard
 function send_score() {
   const username = $('#name-input').val()
   $('#name-input').val('')
@@ -140,6 +141,7 @@ function send_score() {
   })
 }
 
+//Displays a notification prompting the user to enter guess when input is empty
 function enter_guess() {
   iziToast.error({
       id: 'error',
@@ -150,6 +152,7 @@ function enter_guess() {
   })
 }
 
+//Displays a notification upon an incorrect response
 function incorrect() {
   iziToast.warning({
       id: 'warning',
@@ -160,6 +163,7 @@ function incorrect() {
   })
 }
 
+//Displays a notification upon a correct response
 function correct() {
   iziToast.success({
       id: 'success',
@@ -170,6 +174,7 @@ function correct() {
   })
 }
 
+//Displays the correct answer after skipping
 function skip_answer(subreddit) {
   iziToast.info({
       id: 'info',
@@ -180,6 +185,7 @@ function skip_answer(subreddit) {
   })
 }
 
+//Gameover screen. Retrieves and displays stats
 function game_over() {
   $('#focus-wrapper').hide()
   $('gameover').show()
@@ -200,6 +206,8 @@ function game_over() {
   $('#final-time').html(seconds)
 }
 
+
+//Displays a notification upon server error
 function server_error(err) {
   iziToast.error({
       id: 'error',
@@ -213,6 +221,7 @@ function server_error(err) {
   }, 1500)
 }
 
+//Toggles title expansion between full view and collapsing
 function expand_title() {
   if ($('#title')[0].scrollWidth > $('#title').width() && wrapping) {
     let title_height = $('#title-bar').height()

@@ -1,3 +1,4 @@
+/* Full page styles */
 html {
   background-color: #ddd;
 }
@@ -6,6 +7,7 @@ body {
   padding: 0px;
   overflow-x: hidden;
 }
+/* Text */
 h1 {
   font-family: 'Lato', sans-serif;
   font-size: 22px;
@@ -49,6 +51,7 @@ p {
   margin: 0;
 }
 
+/* Navigation */
 nav {
   padding-left: 10vw;
   padding-right: 10vw;
@@ -73,6 +76,7 @@ nav {
   z-index: -1;
 }
 
+/* Footer */
 footer {
   width: calc(100% - 10px);
   background-color: #cccccc;
@@ -109,6 +113,7 @@ footer h5 {
   background-color: rgba(0, 0, 0, 0);
 }
 
+/* Game-wrapper */
 #game-wrapper {
   margin-top: 5vh;
   margin-left: 10vw;
@@ -118,6 +123,7 @@ footer h5 {
   grid-gap: 0 20vw;
 }
 
+/* Start screen */
 #start-wrapper {
   align-self: center;
   display: grid;
@@ -174,6 +180,7 @@ footer h5 {
   position: absolute;
   filter: blur(50px) saturate(150%);
 }
+/* Leaderboard */
 #leaderboard {
   width: 100%;
   border-radius: 8px;
@@ -218,6 +225,7 @@ footer h5 {
   text-align: right;
 }
 
+/* Game over screen */
 #gameover {
   margin-top: -40px;
   align-self: center;
@@ -293,6 +301,7 @@ footer h5 {
   letter-spacing: 2px;
   text-align: center;
 }
+/* User score and name submission */
 #gameover-submit {
   position: absolute;
   width: calc(60vw - 5vh);
@@ -320,6 +329,7 @@ footer h5 {
   transform: translateX(1px);
 }
 
+/* Post screen */
 #focus-wrapper {
   justify-content: center;
   display: flex;
@@ -335,7 +345,7 @@ footer h5 {
               rgba(68, 68, 100, 0.2) 0px 4px 4px,
               rgba(68, 68, 100, 0.2) 0px 8px 8px;
 }
-
+/* Player statistics */
 #stats {
   height: 37px;
   position: relative;
@@ -395,7 +405,7 @@ footer h5 {
 #skip:active {
   background-color: rgba(0, 0, 0, 0.1);
 }
-
+/* Posts */
 #img {
   max-height: calc(80vh - 140px);
   max-width: 80vw;
@@ -450,6 +460,7 @@ footer h5 {
   height: 500%;
   z-index: -1;
 }
+/* Player guess */
 #input-bar {
   display: flex;
   background-color: rgba(48, 48, 48, 0.25);
