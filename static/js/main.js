@@ -213,6 +213,6 @@ function server_error(err) {
 
 function expand_title() {
   if ($('#div-id')[0].scrollWidth >  $('#div-id').innerWidth()) {
-     document.getElementById('title').css.whitespace = 'wrap'
+     document.getElementById('title').css.whitespace = ''
  }
 }
