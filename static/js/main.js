@@ -212,7 +212,7 @@ function server_error(err) {
 }
 
 function expand_title() {
-  if ($('#div-id')[0].scrollWidth >  $('#div-id').innerWidth()) {
-     document.getElementById('title').css.whitespace = ''
- }
+  if ($('#title')[0].scrollWidth > $('#title').width()) {
+    console.log('expand!')
+  }
 }
