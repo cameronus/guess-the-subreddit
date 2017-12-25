@@ -144,7 +144,8 @@ function send_score() {
       username: username
     },
     success: response => {
-
+      $('#name-input').blur()
+      $('#gameover-submit').hide()
     },
     error: err => server_error(err)
   })
