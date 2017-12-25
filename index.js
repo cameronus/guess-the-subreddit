@@ -47,6 +47,16 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/index.html'))
 })
 
+app.get('/api/leaderboard', (req, res) => {
+  if (config.dev) return res.json([{ username: 'username', score: 24 }])
+  let sess = req.session
+  if (!sess.uid) return res.sendStatus(401)
+  Score.find({}, 'username score').limit(10).sort({ score: -1 }).exec((err, scores) => {
+    if (err) res.sendStatus(500)
+    res.json(scores)
+  })
+})
+
 app.post('/api/gamemode', (req, res) => {
   let sess = req.session
   if (!sess.uid) return res.sendStatus(401)
@@ -102,7 +112,6 @@ app.post('/api/question', (req, res) => {
   if (!sess.uid) return res.sendStatus(401)
   if (sess.lives == 0) return res.sendStatus(412)
   if (sess.gamemode == null) return res.sendStatus(412)
-  if (!sess.current) return res.sendStatus(422)
   if (config.dev) {
     return res.json({
       correct: true,
@@ -110,6 +119,7 @@ app.post('/api/question', (req, res) => {
       lives: sess.lives
     })
   }
+  if (!sess.current) return res.sendStatus(422)
   const data = req.body
   if (!data.subreddit) return res.sendStatus(422)
   Post.find({ id: sess.current }, (err, post) => {
@@ -130,6 +140,7 @@ app.post('/api/leaderboard', (req, res) => {
   if (!sess.uid) return res.sendStatus(401)
   if (!sess.lives == 0) return res.sendStatus(412)
   if (sess.gamemode != 1) return res.sendStatus(401)
+  if (config.dev) return res.sendStatus(412)
   const data = req.body
   if (!data.username) return res.sendStatus(422)
   const entry = new Score({
@@ -138,7 +149,10 @@ app.post('/api/leaderboard', (req, res) => {
     score: sess.score
   })
   entry.save((err, response) => {
-    if (err) throw err
+    if (err) return res.sendStatus(500)
+    req.session.destroy((err) => {
+      if (err) return res.sendStatus(500)
+    })
   })
 })
 

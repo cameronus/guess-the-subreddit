@@ -1,6 +1,7 @@
 let img
 
 $(document).ready(() => {
+  update_leaderboard()
   $('#guess').keypress((e) => {
   	if(e.keyCode == 13) guess()
   })
@@ -19,6 +20,22 @@ function requestFullScreen() {
       wscript.SendKeys("{F11}")
     }
   }
+}
+
+function update_leaderboard() {
+  $.ajax({
+    type: 'get',
+    url: '/api/leaderboard',
+    success: response => {
+      let rank = 1
+      for (const score of response) {
+        const row ='<tr><td class="player-rank">' + rank + '</td><td class="player-username">' + score.username + '</td><td class="player-points">' + score.score + '</td></tr>'
+        $('#leaderboard-table').append(row)
+        rank++
+      }
+    },
+    error: err => server_error(err)
+  })
 }
 
 function start(mode) {
@@ -106,6 +123,21 @@ function guess() {
 function skip() {
   get_challenge(() => {
 
+  })
+}
+
+function send_score() {
+  const username = 'cameron :)'
+  $.ajax({
+    type: 'post',
+    url: '/api/leaderboard',
+    data: {
+      username: username
+    },
+    success: response => {
+
+    },
+    error: err => server_error(err)
   })
 }
 
