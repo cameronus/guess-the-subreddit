@@ -38,7 +38,7 @@ function check(posts) {
   const id_hash = crypto.createHash('sha256').update(post.id).digest('hex')
   const file_ext = path.extname(post.url)
   const file_path = path.join(dir, id_hash + file_ext)
-  fs.stat(filename, (err, stat) => {
+  fs.stat(file_path, (err, stat) => {
     if (err != null) {
       const cmd = `wget ${post.url} -O ${file_path}`
       console.log('downloading', post.id, 'with', cmd)
