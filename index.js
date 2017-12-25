@@ -36,6 +36,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 app.use(express.static('static'))
+if (config.external_storage) app.use('/posts', express.static(config.external_storage_path))
 
 app.get('/', (req, res) => {
   let sess = req.session

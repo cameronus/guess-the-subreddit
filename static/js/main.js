@@ -14,20 +14,6 @@ $(document).ready(() => {
   img = document.getElementById('img')
 })
 
-function requestFullScreen() {
-  const el = document.documentElement
-  const requestMethod = el.requestFullScreen || el.webkitRequestFullScreen
-  || el.mozRequestFullScreen || el.msRequestFullScreen
-  if (requestMethod) {
-    requestMethod.call(el)
-  } else if (typeof window.ActiveXObject !== "undefined") {
-    const wscript = new ActiveXObject("WScript.Shell")
-    if (wscript !== null) {
-      wscript.SendKeys("{F11}")
-    }
-  }
-}
-
 function update_leaderboard() {
   $.ajax({
     type: 'get',
