@@ -82,6 +82,9 @@ footer {
   padding-bottom: 10px;
   padding-right: 10px;
 }
+footer #left {
+  float: left;
+}
 footer #right {
   float: right;
 }
@@ -89,6 +92,21 @@ footer h5 {
   margin: 0px;
   display: inline-block;
   margin-left: 10px;
+}
+#donate {
+  display: inline;
+}
+#donate-button {
+  width: 60px;
+  border: none;
+  outline: none;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  color: #606060;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 #game-wrapper {
