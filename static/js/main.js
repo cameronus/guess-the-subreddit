@@ -199,3 +199,9 @@ function server_error(err) {
     window.location.reload(false)
   }, 1500)
 }
+
+function expand_title() {
+  if ($('#div-id')[0].scrollWidth >  $('#div-id').innerWidth()) {
+     document.getElementById('title').css.whitespace = 'wrap'
+ }
+}

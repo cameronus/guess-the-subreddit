@@ -5,13 +5,13 @@ subreddit just by looking at a post.
 
 ## To-do
 1. Loading animation
-2. Expand title to view overflowed titles
-3. Code optimization and documentation
-4. Rank percentile score
-5. Add request validation middleware to reduce redundancy in code
+2. Expand title to view overflown titles
+3. Rank percentile score
+4. Add request validation middleware to reduce redundancy in code
 
-## Next-release
+## Next release
 1. Support video
+2. Code optimization and documentation
 
 ## Subreddits
 1. all
@@ -57,7 +57,7 @@ subreddit just by looking at a post.
 41. idiotsfightingthings
 42. mademesmile
 43. therewasanattempt
-44. hitmamals
+44. hitanimals
 45. prematurecelebration
 46. mildlyinfuriating
 47. softwaregore
