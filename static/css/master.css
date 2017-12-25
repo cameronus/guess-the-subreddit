@@ -208,43 +208,6 @@ footer h5 {
   grid-template-rows: 400px;
   grid-gap: 0 5vh;
 }
-#gameover-container {
-  background-color: white;
-  border-radius: 8px;
-  padding: 40px;
-  grid-column-start: 2;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 50px 220px 26px;
-  box-shadow: rgba(68, 68, 100, 0.2) 0px 2px 2px,
-              rgba(68, 68, 100, 0.2) 0px 4px 4px;
-  display: relative;
-}
-#gameover-container h1 {
-  color: #303030;
-  font-size: 30px;
-  margin: 0px;
-  height: 40px;
-  grid-column-end: span 3;
-  border-bottom: 1.5px #ddd solid;
-}
-.score {
-  font-family: 'Lato', sans-serif;
-  font-size: 100px;
-  font-weight: 900;
-  color: #303030;
-  letter-spacing: 2px;
-  text-align: center;
-  margin-top: 50px;
-}
-.score-tag {
-  font-family: 'Lato', sans-serif;
-  font-size: 20px;
-  font-weight: 900;
-  color: #303030;
-  letter-spacing: 2px;
-  text-align: center;
-}
 #restart {
   font-family: 'Lato', sans-serif;
   font-size: 25px;
@@ -273,6 +236,53 @@ footer h5 {
   z-index: -1;
   position: absolute;
   filter: blur(50px) saturate(150%);
+}
+#gameover-container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 40px;
+  grid-column-start: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 50px 220px 26px;
+  box-shadow: rgba(68, 68, 100, 0.2) 0px 2px 2px,
+              rgba(68, 68, 100, 0.2) 0px 4px 4px;
+  position: relative;
+}
+#gameover-container h1 {
+  color: #303030;
+  font-size: 30px;
+  margin: 0px;
+  height: 40px;
+  grid-column-end: span 3;
+  border-bottom: 1.5px #ddd solid;
+}
+.score {
+  font-family: 'Lato', sans-serif;
+  font-size: 100px;
+  font-weight: 900;
+  color: #303030;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-top: 50px;
+}
+.score-tag {
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: #303030;
+  letter-spacing: 2px;
+  text-align: center;
+}
+#submit-name {
+  position: absolute;
+  width: calc(60vw - 5vh - 40px);
+  border: none;
+  padding-left: 12px;
+  border-bottom-left-radius: 8px;
+  outline: none;
+  height: 32px;
+  bottom: 0px;
 }
 
 #focus-wrapper {
