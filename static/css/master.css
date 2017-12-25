@@ -325,7 +325,7 @@ footer h5 {
   display: flex;
 }
 #focus {
-  min-width: 280px;
+  min-width: 240px;
   max-width: 80vw;
   position: absolute;
   border-radius: 8px;
@@ -391,7 +391,6 @@ footer h5 {
 
 #img {
   max-height: calc(80vh - 140px);
-  min-width: 20px;
   max-width: 80vw;
   object-fit: cover;
   display: block;

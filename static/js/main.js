@@ -1,6 +1,7 @@
 let img
 let start_time
 let gamemode
+let wrapping = true
 
 $(document).ready(() => {
   update_leaderboard()
@@ -74,14 +75,15 @@ function get_challenge(cb) {
       $('#img').one('load', () => {
         // end loading
         cb()
+        document.getElementById('title').style.whiteSpace = 'nowrap'
+        document.getElementById('img').style.maxHeight = 'calc(80vh - 140px)';
         $('#guess').focus()
         const element = $('#img').clone()
         element.css({ visibility: 'hidden' })
         $('body').append(element)
         const img_width = element.width()
         element.remove()
-
-        $('#title').width(img_width - 24)
+        $('#title').width(img_width - 30)
       })
       $('#img').one('error', () => {
         return server_error()
@@ -212,7 +214,19 @@ function server_error(err) {
 }
 
 function expand_title() {
-  if ($('#title')[0].scrollWidth > $('#title').width()) {
-    console.log('expand!')
+  if ($('#title')[0].scrollWidth > $('#title').width() && wrapping) {
+    let title_height = $('#title-bar').height()
+    document.getElementById('title').style.whiteSpace = 'normal'
+    let current_title_height = $('#title-bar').height(),
+    title_height_dif = current_title_height - title_height,
+    img_height = document.getElementById('img').offsetHeight - title_height_dif
+    document.getElementById('img').style.maxHeight = img_height + 'px'
+    wrapping = false
   }
+  else {
+    document.getElementById('title').style.whiteSpace = 'nowrap'
+    document.getElementById('img').style.maxHeight = 'calc(80vh - 140px)'
+    wrapping = true
+  }
+  console.log(wrapping)
 }
