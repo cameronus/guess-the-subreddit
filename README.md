@@ -4,16 +4,14 @@ Guess the Subreddit is a game where the player has to guess the name of the
 subreddit just by looking at a post.
 
 ## To-do
-1. Leaderboard
-2. Max time limit for per posts
-3. Loading animation
-4. Expand title to view overflowed titles
-5. Add btc donation address
-6. Support video
-7. Code optimization and documentation
-8. Enforce fullscreen on competitive mode
-9. Rank percentile score
-10. Add request validation middleware to reduce redundancy in code
+1. Loading animation
+2. Expand title to view overflowed titles
+3. Code optimization and documentation
+4. Rank percentile score
+5. Add request validation middleware to reduce redundancy in code
+
+## Next-release
+1. Support video
 
 ## Subreddits
 1. all
