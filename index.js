@@ -156,4 +156,8 @@ app.post('/api/leaderboard', (req, res) => {
   })
 })
 
+app.use((req, res) => {
+  res.end('404 Page Not Found')
+})
+
 app.listen(port, () => console.log(`Listening on port ${port}.`))
