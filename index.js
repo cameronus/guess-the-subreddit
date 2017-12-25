@@ -36,7 +36,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 app.use(express.static('static'))
-if (config.external_storage) app.use('/posts', express.static(config.external_storage_path))
+if (config.external_storage) app.use('/posts', express.static(path.resolve(config.external_storage_path)))
 
 app.get('/', (req, res) => {
   let sess = req.session
@@ -85,26 +85,38 @@ app.get('/api/question', (req, res) => {
       lives: sess.lives
     })
   }
+  let last = null
   if (sess.current) {
     sess.lives -= 1
+    last = sess.current
     if (sess.lives == 0) return res.json({
       score: sess.score,
       lives: sess.lives
     })
   }
   Post.findRandom().limit(1).exec((err, rand) => {
-    if (err) return res.sendStatus(500)
+    if (err || rand.length == 0) return res.sendStatus(500)
     const post = rand[0]
     sess.current = post.id
     const id_hash = crypto.createHash('sha256').update(post.id).digest('hex')
     const file_ext = path.extname(post.url)
     const url = req.protocol + '://' + req.headers.host + '/posts/' + id_hash + file_ext
-    res.json({
+    let response = {
       title: sess.gamemode == 0 ? post.title : null,
       url: url,
       score: sess.score,
-      lives: sess.lives
-    })
+      lives: sess.lives,
+      last: null
+    }
+    if (last) {
+      Post.find({ id: last }, (error, posts) => {
+        if (error || posts.length == 0) return res.sendStatus(500)
+        response.last = posts[0].subreddit
+        res.json(response)
+      })
+    } else {
+      res.json(response)
+    }
   })
 })
 
