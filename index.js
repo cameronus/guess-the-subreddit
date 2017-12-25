@@ -36,6 +36,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 app.use(express.static('static'))
+if (config.external_storage) app.use('/posts', express.static(config.external_storage_path))
 
 app.get('/', (req, res) => {
   let sess = req.session
@@ -51,7 +52,7 @@ app.get('/api/leaderboard', (req, res) => {
   if (config.dev) return res.json([{ username: 'username', score: 24 }])
   let sess = req.session
   if (!sess.uid) return res.sendStatus(401)
-  Score.find({}, 'username score').limit(10).sort({ score: -1 }).exec((err, scores) => {
+  Score.find({}, 'username score').limit(15).sort({ score: -1 }).exec((err, scores) => {
     if (err) res.sendStatus(500)
     res.json(scores)
   })
@@ -137,7 +138,6 @@ app.post('/api/question', (req, res) => {
 
 app.post('/api/leaderboard', (req, res) => {
   let sess = req.session
-  console.log(sess)
   if (!sess.uid) return res.sendStatus(401)
   if (!sess.lives == 0) return res.sendStatus(412)
   if (sess.gamemode != 1) return res.sendStatus(401)
@@ -153,6 +153,7 @@ app.post('/api/leaderboard', (req, res) => {
     if (err) return res.sendStatus(500)
     req.session.destroy((err) => {
       if (err) return res.sendStatus(500)
+      res.sendStatus(200)
     })
   })
 })

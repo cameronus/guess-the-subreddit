@@ -5,7 +5,8 @@ const { exec } = require('child_process')
 const cluster = require('cluster')
 const path = require('path')
 const fs = require('fs')
-const dir = path.join(__dirname, '../static/posts') + '/'
+const config = require('../config.json')
+const dir = config.external_storage ? config.external_storage_path : path.join(__dirname, '../static/posts') + '/'
 
 const Post = require('../models/Post')
 
@@ -36,9 +37,10 @@ function check(posts) {
   const post = posts.shift()
   const id_hash = crypto.createHash('sha256').update(post.id).digest('hex')
   const file_ext = path.extname(post.url)
-  fs.stat(dir + id_hash + file_ext, (err, stat) => {
+  const file_path = path.join(dir, id_hash + file_ext)
+  fs.stat(filename, (err, stat) => {
     if (err != null) {
-      const cmd = `wget ${post.url} -O ${dir}${id_hash}${file_ext}`
+      const cmd = `wget ${post.url} -O ${file_path}`
       console.log('downloading', post.id, 'with', cmd)
       exec(cmd, (err, stdout, stderr) => {
         if (err) throw err

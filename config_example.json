@@ -3,5 +3,7 @@
   "post": {
     "title": "This is a test post",
     "url": "img/test.jpg"
-  }
+  },
+  "external_storage": "false",
+  "external_storage_path": ""
 }
