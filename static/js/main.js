@@ -1,6 +1,8 @@
 let img
+let start_time
 
 $(document).ready(() => {
+  update_leaderboard()
   $('#guess').keypress((e) => {
   	if(e.keyCode == 13) guess()
   })
@@ -21,9 +23,26 @@ function requestFullScreen() {
   }
 }
 
+function update_leaderboard() {
+  $.ajax({
+    type: 'get',
+    url: '/api/leaderboard',
+    success: response => {
+      let rank = 1
+      for (const score of response) {
+        const row ='<tr><td class="player-rank">' + rank + '</td><td class="player-username">' + score.username + '</td><td class="player-points">' + score.score + '</td></tr>'
+        $('#leaderboard-table').append(row)
+        rank++
+      }
+    },
+    error: err => server_error(err)
+  })
+}
+
 function start(mode) {
   set_gamemode(mode, () => {
     get_challenge(() => {
+      start_time = new Date()
       $('#start-wrapper').hide()
     })
   })
@@ -109,6 +128,21 @@ function skip() {
   })
 }
 
+function send_score() {
+  const username = 'cameron :)'
+  $.ajax({
+    type: 'post',
+    url: '/api/leaderboard',
+    data: {
+      username: username
+    },
+    success: response => {
+
+    },
+    error: err => server_error(err)
+  })
+}
+
 function enter_guess() {
   iziToast.error({
       id: 'error',
@@ -153,7 +187,9 @@ function game_over() {
   const points = $('#score-number').html()
   document.getElementById('skip').setAttribute('disabled', true)
   document.getElementById('check').setAttribute('disabled', true)
-  document.getElementById('final-score').innerHTML = points
+  $('#final-score').html(points)
+  const seconds = Math.trunc(((new Date()).getTime() - start_time.getTime())/1000)
+  $('#final-time').html(seconds)
 }
 
 function server_error(err) {
