@@ -43,8 +43,8 @@ function check(posts) {
       const cmd = `wget ${post.url} -O ${file_path}`
       console.log('downloading', post.id, 'with', cmd)
       exec(cmd, (err, stdout, stderr) => {
-        if (err) throw err
-        console.log('downloaded', post.id)
+        if (err) console.log('error!', err)
+        if (!err) console.log('downloaded', post.id)
         check(posts)
       })
     } else {
