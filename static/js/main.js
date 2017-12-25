@@ -1,4 +1,5 @@
 let img
+let start_time
 
 $(document).ready(() => {
   update_leaderboard()
@@ -41,6 +42,7 @@ function update_leaderboard() {
 function start(mode) {
   set_gamemode(mode, () => {
     get_challenge(() => {
+      start_time = new Date()
       $('#start-wrapper').hide()
     })
   })
@@ -185,7 +187,9 @@ function game_over() {
   const points = $('#score-number').html()
   document.getElementById('skip').setAttribute('disabled', true)
   document.getElementById('check').setAttribute('disabled', true)
-  document.getElementById('final-score').innerHTML = points
+  $('#final-score').html(points)
+  const seconds = Math.trunc(((new Date()).getTime() - start_time.getTime())/1000)
+  $('#final-time').html(seconds)
 }
 
 function server_error(err) {
