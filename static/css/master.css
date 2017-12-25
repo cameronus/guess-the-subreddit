@@ -45,6 +45,9 @@ h5 {
 a {
   text-decoration: none;
 }
+p {
+  margin: 0;
+}
 
 nav {
   padding-left: 10vw;
@@ -202,7 +205,7 @@ footer h5 {
   margin-top: -40px;
   align-self: center;
   display: grid;
-  grid-template-columns: 400px calc(80vw - 400px - 5vh);
+  grid-template-columns: 20vw calc(60vw - 5vh);
   grid-template-rows: 400px;
   grid-gap: 0 5vh;
 }
@@ -213,10 +216,10 @@ footer h5 {
   grid-column-start: 2;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 50px calc(260px - 5vh) 26px;
-  grid-gap: 0vh 5vh;
+  grid-template-rows: 50px 220px 26px;
   box-shadow: rgba(68, 68, 100, 0.2) 0px 2px 2px,
               rgba(68, 68, 100, 0.2) 0px 4px 4px;
+  display: relative;
 }
 #gameover-container h1 {
   color: #303030;
@@ -226,29 +229,24 @@ footer h5 {
   grid-column-end: span 3;
   border-bottom: 1.5px #ddd solid;
 }
-#final-score-container {
-}
 .score {
   font-family: 'Lato', sans-serif;
-  font-size: 140px;
+  font-size: 100px;
   font-weight: 900;
   color: #303030;
   letter-spacing: 2px;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 .score-tag {
   font-family: 'Lato', sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 900;
   color: #303030;
   letter-spacing: 2px;
   text-align: center;
-  margin: 0px;
 }
 #restart {
-  width: 400px;
-  height: 400px;
   font-family: 'Lato', sans-serif;
   font-size: 25px;
   font-weight: 900;
