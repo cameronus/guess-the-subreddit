@@ -1,4 +1,5 @@
 {
+  "port": 3000,
   "dev": true,
   "post": {
     "title": "This is a test post",

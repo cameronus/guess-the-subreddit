@@ -19,7 +19,7 @@ if (!config.dev) {
   mongoose.connect('mongodb://localhost/guess-the-subreddit')
 }
 
-const port = 3000
+const port = config.port
 const num_lives = 10
 
 let options = {
