@@ -137,6 +137,7 @@ app.post('/api/question', (req, res) => {
 
 app.post('/api/leaderboard', (req, res) => {
   let sess = req.session
+  console.log(sess)
   if (!sess.uid) return res.sendStatus(401)
   if (!sess.lives == 0) return res.sendStatus(412)
   if (sess.gamemode != 1) return res.sendStatus(401)

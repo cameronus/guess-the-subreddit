@@ -1,10 +1,15 @@
 let img
 let start_time
+let gamemode
 
 $(document).ready(() => {
   update_leaderboard()
+  $('#gameover-submit').hide()
   $('#guess').keypress((e) => {
   	if(e.keyCode == 13) guess()
+  })
+  $('#name-input').keypress((e) => {
+  	if(e.keyCode == 13) send_score()
   })
   img = document.getElementById('img')
 })
@@ -40,6 +45,7 @@ function update_leaderboard() {
 }
 
 function start(mode) {
+  gamemode = mode
   set_gamemode(mode, () => {
     get_challenge(() => {
       start_time = new Date()
@@ -129,7 +135,8 @@ function skip() {
 }
 
 function send_score() {
-  const username = 'cameron :)'
+  const username = $('#name-input').val()
+  $('#name-input').val('')
   $.ajax({
     type: 'post',
     url: '/api/leaderboard',
@@ -177,6 +184,7 @@ function game_over() {
   $('#focus-wrapper').hide()
   $('gameover').show()
   $('#guess').blur()
+  if (gamemode == 1) $('#gameover-submit').show()
   iziToast.error({
       id: 'error',
       title: 'Game Over',
