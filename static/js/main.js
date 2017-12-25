@@ -70,6 +70,7 @@ function get_challenge(cb) {
       if (response.title == null) $('#title').hide()
       document.getElementById('title').innerHTML = response.title
       document.getElementById('title').title = response.title
+      if (response.last) skip_answer(response.last)
       $('#img').one('load', () => {
         // end loading
         cb()
@@ -162,6 +163,16 @@ function correct() {
       id: 'success',
       title: 'Correct',
       message: 'That answer was correct!',
+      position: 'topRight',
+      transitionIn: 'fadeInDown'
+  })
+}
+
+function skip_answer(subreddit) {
+  iziToast.info({
+      id: 'info',
+      title: 'Answer',
+      message: 'The answer was r/' + subreddit,
       position: 'topRight',
       transitionIn: 'fadeInDown'
   })
