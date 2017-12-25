@@ -51,7 +51,7 @@ app.get('/api/leaderboard', (req, res) => {
   if (config.dev) return res.json([{ username: 'username', score: 24 }])
   let sess = req.session
   if (!sess.uid) return res.sendStatus(401)
-  Score.find({}, 'username score').limit(10).sort({ score: -1 }).exec((err, scores) => {
+  Score.find({}, 'username score').limit(15).sort({ score: -1 }).exec((err, scores) => {
     if (err) res.sendStatus(500)
     res.json(scores)
   })

@@ -21,6 +21,7 @@ if (cluster.isMaster) {
          console.log(id, 'being removed')
          Post.remove({ id: id }, (err, removed) => {
            console.log(id, 'successfully removed')
+           // also eventually delete image files ?
          })
        })
     }
