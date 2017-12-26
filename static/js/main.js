@@ -5,7 +5,7 @@ let wrapping = true
 
 $(document).ready(() => {
   update_leaderboard()
-  $('#gameover-submit').hide()
+  document.getElementById('gameover-submit').style.display = 'none'
   $('#guess').keypress((e) => {
   	if(e.keyCode == 13) guess()
   })
@@ -36,7 +36,7 @@ function start(mode) {
   set_gamemode(mode, () => {
     get_challenge(() => {
       start_time = new Date()
-      $('#start-wrapper').hide()
+      document.getElementById('start-wrapper').style.display = 'none'
     })
   })
 }
@@ -68,7 +68,7 @@ function get_challenge(cb) {
       img.src = response.url
       document.getElementById('title-bg').src = response.url
       document.getElementById('stats-bg').src = response.url
-      if (response.title == null) $('#title').hide()
+      if (response.title == null) document.getElementById('title').style.display = 'none'
       document.getElementById('title').innerHTML = response.title
       document.getElementById('title').title = response.title
       if (response.last) skip_answer(response.last)
@@ -135,7 +135,7 @@ function send_score() {
     },
     success: response => {
       $('#name-input').blur()
-      $('#gameover-submit').hide()
+      document.getElementById('gameover-submit').style.display = 'none'
     },
     error: err => server_error(err)
   })
@@ -187,10 +187,10 @@ function skip_answer(subreddit) {
 
 //Gameover screen. Retrieves and displays stats
 function game_over() {
-  $('#focus-wrapper').hide()
-  $('gameover').show()
+  document.getElementById('focus-wrapper').style.display = 'none'
+  document.getElementById('gameover').style.display = 'grid'
   $('#guess').blur()
-  if (gamemode == 1) $('#gameover-submit').show()
+  if (gamemode == 1) document.getElementById('gameover-submit').style.display = 'block'
   iziToast.error({
       id: 'error',
       title: 'Game Over',
@@ -205,7 +205,6 @@ function game_over() {
   const seconds = Math.trunc(((new Date()).getTime() - start_time.getTime())/1000)
   $('#final-time').html(seconds)
 }
-
 
 //Displays a notification upon server error
 function server_error(err) {
