@@ -202,8 +202,21 @@ function game_over() {
   document.getElementById('skip').setAttribute('disabled', true)
   document.getElementById('check').setAttribute('disabled', true)
   $('#final-score').html(points)
-  const seconds = Math.trunc(((new Date()).getTime() - start_time.getTime())/1000)
-  $('#final-time').html(seconds)
+  //let seconds = Math.trunc(((new Date()).getTime() - start_time.getTime())/1000)
+  seconds = 2791
+  if (seconds >= 60) {
+    document.getElementById('final-time').style.fontSize = "60px"
+    document.getElementById('final-time').style.marginTop = "75px"
+    document.getElementById('time-title').innerHTML = 'MINUTES'
+    let minutes = Math.trunc(seconds / 60)
+    seconds %= 60
+    if (seconds < 10) $('#final-time').html(minutes + ':0' + seconds)
+    else { $('#final-time').html(minutes + ':' + seconds) }
+  }
+  else {
+    if (seconds == 1) document.getElementById('time-title').innerHTML = 'SECOND'
+    $('#final-time').html(seconds)
+  }
 }
 
 //Displays a notification upon server error
