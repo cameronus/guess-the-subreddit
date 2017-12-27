@@ -2,8 +2,12 @@ const mongoose = require('mongoose')
 const request = require('request')
 const { exec } = require('child_process')
 const cluster = require('cluster')
-
+const fs = require('fs')
+const path = require('path')
+const crypto = require('crypto')
 const Post = require('../models/Post')
+const config = require('../config.json')
+const dir = config.external_storage ? config.external_storage_path : path.join(__dirname, '../static/posts') + '/'
 
 const num_workers = 4
 
@@ -17,11 +21,19 @@ if (cluster.isMaster) {
     for (const chunk of chunks) {
       const worker = cluster.fork()
       worker.send(chunk)
-       worker.on('message', id => {
-         console.log(id, 'being removed')
-         Post.remove({ id: id }, (err, removed) => {
-           console.log(id, 'successfully removed')
-           // also eventually delete image files ?
+       worker.on('message', post => {
+         console.log(post.id, 'being removed')
+         Post.remove({ id: post.id }, (err, removed) => {
+           if (err)r eturn console.log('failed to remove in db', err)
+           console.log(post.id, 'successfully removed in db')
+           const id_hash = crypto.createHash('sha256').update(post.id).digest('hex')
+           const file_ext = path.extname(post.url)
+           const file_path = path.join(dir, id_hash + file_ext)
+           console.log('removing file', file_path)
+           fs.unlink(file_path, (err) => {
+              if (err) return console.log('failed to remove file', err)
+              console.log(post.id, 'successfully removed in files')
+            })
          })
        })
     }
@@ -42,7 +54,7 @@ function check(posts) {
     const code = stdout.trim()
     if (code == 404 || code == 302) {
       console.log(post.id, 'is missing -', posts.length, 'left')
-      process.send(post.id)
+      process.send(post)
     }
     check(posts)
   })
