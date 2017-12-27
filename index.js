@@ -196,10 +196,10 @@ app.use((req, res) => {
 
 if (config.ssl) {
   require('http').createServer(lex.middleware(require('redirect-https')())).listen(80, () => {
-    console.log(`Listening (http) on port 80}.`)
+    console.log(`Listening (http) on port 80.`)
   })
   require('https').createServer(lex.httpsOptions, lex.middleware(app)).listen(443, function () {
-    console.log(`Listening (https) on port 443}.`)
+    console.log(`Listening (https) on port 443.`)
   })
 } else {
   app.listen(port, () => console.log(`Listening on port ${port}.`))
