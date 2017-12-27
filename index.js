@@ -1,4 +1,3 @@
-const axios = require('axios')
 const express = require('express')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
@@ -17,6 +16,26 @@ if (!config.dev) {
   Score = require('./models/Score')
   mongoose.Promise = global.Promise
   mongoose.connect('mongodb://localhost/guess-the-subreddit')
+}
+
+let lex
+if (config.ssl) {
+  lex = require('greenlock-express').create({
+    server: config.ssl_staging ? 'staging' : 'https://acme-v01.api.letsencrypt.org/directory',
+    challenges: { 'http-01': require('le-challenge-fs').create({ webrootPath: '/tmp/acme-challenges' }) },
+    store: require('le-store-certbot').create({ webrootPath: '/tmp/acme-challenges' }),
+    approveDomains: approveDomains
+  })
+}
+
+function approveDomains(opts, certs, cb) {
+  if (certs) {
+    opts.domains = certs.altnames
+  } else {
+    opts.email = config.ssl_email
+    opts.agreeTos = true
+  }
+  cb(null, { options: opts, certs: certs })
 }
 
 const port = config.port
@@ -175,4 +194,13 @@ app.use((req, res) => {
   res.end('404 Page Not Found')
 })
 
-app.listen(port, () => console.log(`Listening on port ${port}.`))
+if (config.ssl) {
+  require('http').createServer(lex.middleware(require('redirect-https')())).listen(80, () => {
+    console.log(`Listening (http) on port ${this.address()}.`)
+  })
+  require('https').createServer(lex.httpsOptions, lex.middleware(app)).listen(443, function () {
+    console.log(`Listening (https) on port ${this.address()}.`)
+  })
+} else {
+  app.listen(port, () => console.log(`Listening on port ${port}.`))
+}

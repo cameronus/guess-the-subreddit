@@ -1,4 +1,7 @@
 {
+  "ssl": false,
+  "ssl_staging": true,
+  "ssl_email": "",
   "port": 3000,
   "dev": true,
   "post": {
