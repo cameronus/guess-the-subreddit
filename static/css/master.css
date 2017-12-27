@@ -463,7 +463,7 @@ footer h5 {
   object-fit: cover;
   display: block;
   margin: 0px auto;
-  transition: .05s filter;
+  transition: .1s filter;
 }
 #expand {
   width: 30px;
@@ -502,7 +502,7 @@ footer h5 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  transition: .05s filter;
+  transition: .1s filter;
 }
 #title-bg {
   position: absolute;
