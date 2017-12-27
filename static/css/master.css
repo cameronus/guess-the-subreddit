@@ -60,7 +60,6 @@ p {
   background-color: rgba(0, 0, 0, 0.3);
   display: none;
 }
-
 #loader {
   width: 200px;
   height: 200px;
@@ -68,7 +67,6 @@ p {
   position: relative;
   margin: 40vh auto;
 }
-
 #loader span {
   display: inline-block;
   width: 40px;
@@ -78,19 +76,15 @@ p {
   margin: 70px 10px;
   opacity: 0;
 }
-
 #loader span:nth-child(1){
   animation: loader 1s ease-in-out infinite;
 }
-
 #loader span:nth-child(2){
   animation: loader 1s ease-in-out 0.33s infinite;
 }
-
 #loader span:nth-child(3){
   animation: loader 1s ease-in-out 0.66s infinite;
 }
-
 @keyframes loader {
   0%, 100% {
     opacity: 1;
@@ -562,4 +556,13 @@ footer h5 {
 }
 #check:active {
   transform: translateX(1px);
+}
+
+#mobile-error {
+  margin: 0px auto;
+  margin-top: 25vh;
+  width: 80%;
+  text-align: center;
+  color: #202020;
+  font-size: 60px;
 }
