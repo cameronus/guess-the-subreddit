@@ -320,7 +320,8 @@ footer h5 {
   padding: 40px;
   grid-column-start: 2;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 50px 220px 26px;
   box-shadow: rgba(68, 68, 100, 0.2) 0px 2px 2px,
               rgba(68, 68, 100, 0.2) 0px 4px 4px;
@@ -332,7 +333,8 @@ footer h5 {
   font-size: 30px;
   margin: 0px;
   height: 40px;
-  grid-column-end: span 3;
+  grid-column-end: span 2;
+  /* grid-column-end: span 3; */
   border-bottom: 1.5px #ddd solid;
 }
 .score {
@@ -473,7 +475,6 @@ footer h5 {
   right: 10px;
   background-image: url('../img/expand.svg');
   transition: .1s all;
-  z-index: 10000;
 }
 #expand:active {
   transform: translateY(1px);
@@ -503,7 +504,7 @@ footer h5 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  transition: .2s filter;
+  transition: .1s filter;
 }
 #title-bg {
   position: absolute;
