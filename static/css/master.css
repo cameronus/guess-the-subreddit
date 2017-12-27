@@ -67,7 +67,6 @@ p {
   border-radius: 100%;
   position: relative;
   margin: 40vh auto;
-  opacity: 0;
 }
 
 #loader span {
@@ -77,6 +76,7 @@ p {
   border-radius: 100%;
   background-color: #3498db;
   margin: 70px 10px;
+  opacity: 0;
 }
 
 #loader span:nth-child(1){
