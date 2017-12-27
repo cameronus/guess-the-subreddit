@@ -5,7 +5,7 @@ let wrapping = true
 
 $(document).ready(() => {
   update_leaderboard()
-  $('#gameover-submit').hide()
+  document.getElementById('gameover-submit').style.display = 'none'
   $('#guess').keypress((e) => {
   	if(e.keyCode == 13) guess()
   })
@@ -70,7 +70,7 @@ function get_challenge(cb) {
       img.src = response.url
       document.getElementById('title-bg').src = response.url
       document.getElementById('stats-bg').src = response.url
-      if (response.title == null) $('#title').hide()
+      if (response.title == null) document.getElementById('title').style.display = 'none'
       document.getElementById('title').innerHTML = response.title
       document.getElementById('title').title = response.title
       if (response.last) skip_answer(response.last)
@@ -137,7 +137,7 @@ function send_score() {
     },
     success: response => {
       $('#name-input').blur()
-      $('#gameover-submit').hide()
+      document.getElementById('gameover-submit').style.display = 'none'
     },
     error: err => server_error(err)
   })
@@ -189,10 +189,10 @@ function skip_answer(subreddit) {
 
 //Gameover screen. Retrieves and displays stats
 function game_over() {
-  $('#focus-wrapper').hide()
-  $('gameover').show()
+  document.getElementById('focus-wrapper').style.display = 'none'
+  document.getElementById('gameover').style.display = 'grid'
   $('#guess').blur()
-  if (gamemode == 1) $('#gameover-submit').show()
+  if (gamemode == 1) document.getElementById('gameover-submit').style.display = 'block'
   iziToast.error({
       id: 'error',
       title: 'Game Over',
@@ -204,10 +204,22 @@ function game_over() {
   document.getElementById('skip').setAttribute('disabled', true)
   document.getElementById('check').setAttribute('disabled', true)
   $('#final-score').html(points)
-  const seconds = Math.trunc(((new Date()).getTime() - start_time.getTime())/1000)
-  $('#final-time').html(seconds)
+  //let seconds = Math.trunc(((new Date()).getTime() - start_time.getTime())/1000)
+  seconds = 2791
+  if (seconds >= 60) {
+    document.getElementById('final-time').style.fontSize = "60px"
+    document.getElementById('final-time').style.marginTop = "75px"
+    document.getElementById('time-title').innerHTML = 'MINUTES'
+    let minutes = Math.trunc(seconds / 60)
+    seconds %= 60
+    if (seconds < 10) $('#final-time').html(minutes + ':0' + seconds)
+    else { $('#final-time').html(minutes + ':' + seconds) }
+  }
+  else {
+    if (seconds == 1) document.getElementById('time-title').innerHTML = 'SECOND'
+    $('#final-time').html(seconds)
+  }
 }
-
 
 //Displays a notification upon server error
 function server_error(err) {
