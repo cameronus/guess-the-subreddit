@@ -24,7 +24,7 @@ if (cluster.isMaster) {
        worker.on('message', post => {
          console.log(post.id, 'being removed')
          Post.remove({ id: post.id }, (err, removed) => {
-           if (err)r eturn console.log('failed to remove in db', err)
+           if (err) return console.log('failed to remove in db', err)
            console.log(post.id, 'successfully removed in db')
            const id_hash = crypto.createHash('sha256').update(post.id).digest('hex')
            const file_ext = path.extname(post.url)
