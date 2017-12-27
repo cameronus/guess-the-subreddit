@@ -204,8 +204,6 @@ function game_over() {
   document.getElementById('skip').setAttribute('disabled', true)
   document.getElementById('check').setAttribute('disabled', true)
   $('#final-score').html(points)
-  //let seconds = Math.trunc(((new Date()).getTime() - start_time.getTime())/1000)
-  seconds = 2791
   if (seconds >= 60) {
     document.getElementById('final-time').style.fontSize = "60px"
     document.getElementById('final-time').style.marginTop = "75px"
