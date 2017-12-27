@@ -32,10 +32,12 @@ function update_leaderboard() {
 }
 
 function start(mode) {
+  $('#loading-container').show()
   gamemode = mode
   set_gamemode(mode, () => {
     get_challenge(() => {
       start_time = new Date()
+      $('#loading-container').hide()
       $('#start-wrapper').hide()
     })
   })
@@ -56,7 +58,7 @@ function set_gamemode(mode, cb) {
 }
 
 function get_challenge(cb) {
-  // start loading
+  $('#img, #title').css('filter', 'blur(10px)')
   $.ajax({
     type: 'get',
     url: '/api/question',
@@ -73,7 +75,7 @@ function get_challenge(cb) {
       document.getElementById('title').title = response.title
       if (response.last) skip_answer(response.last)
       $('#img').one('load', () => {
-        // end loading
+        $('#img, #title').css('filter', 'blur(0px)')
         cb()
         document.getElementById('title').style.whiteSpace = 'nowrap'
         document.getElementById('img').style.maxHeight = 'calc(80vh - 140px)';

@@ -51,6 +51,55 @@ p {
   margin: 0;
 }
 
+/* Loader */
+#loading-container {
+  position: absolute;
+  z-index: 5000;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+}
+
+#loader {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  position: relative;
+  margin: 40vh auto;
+  opacity: 0;
+}
+
+#loader span {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: #3498db;
+  margin: 70px 10px;
+}
+
+#loader span:nth-child(1){
+  animation: loader 1s ease-in-out infinite;
+}
+
+#loader span:nth-child(2){
+  animation: loader 1s ease-in-out 0.33s infinite;
+}
+
+#loader span:nth-child(3){
+  animation: loader 1s ease-in-out 0.66s infinite;
+}
+
+@keyframes loader {
+  0%, 100% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+}
+
 /* Navigation */
 nav {
   padding-left: 10vw;
@@ -61,6 +110,7 @@ nav {
   overflow: hidden;
   position: relative;
   box-shadow: rgba(68, 68, 100, 0.2) 0px 2px 2px;
+  z-index: 6000;
 }
 #home {
   float: left;
@@ -85,6 +135,7 @@ footer {
   padding-top: 6px;
   padding-bottom: 10px;
   padding-right: 10px;
+  z-index: 6000;
 }
 footer #left {
   float: left;
@@ -412,6 +463,7 @@ footer h5 {
   object-fit: cover;
   display: block;
   margin: 0px auto;
+  transition: .05s filter;
 }
 #expand {
   width: 30px;
@@ -450,6 +502,7 @@ footer h5 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: .05s filter;
 }
 #title-bg {
   position: absolute;

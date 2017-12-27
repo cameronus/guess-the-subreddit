@@ -31,6 +31,7 @@ let options = {
 
 if (!config.dev) options.store = new MongoStore({ mongooseConnection: mongoose.connection })
 
+app.disable('x-powered-by')
 app.use(session(options))
 app.use(bodyParser.urlencoded({
   extended: true
