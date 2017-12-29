@@ -41,6 +41,7 @@ function start(mode) {
       start_time = new Date()
       $('#loading-container').hide()
       $('#start-wrapper').hide()
+      document.getElementById('focus-wrapper').style.display = 'flex';
     })
   })
 }
