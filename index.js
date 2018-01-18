@@ -7,6 +7,7 @@ const path = require('path')
 const mongoose = require('mongoose')
 const crypto = require('crypto')
 const config = require('./config.json')
+const xss = require('xss')
 
 const app = express()
 
@@ -178,7 +179,7 @@ app.post('/api/leaderboard', (req, res) => {
   if (!data.username) return res.sendStatus(422)
   const entry = new Score({
     uid: sess.uid,
-    username: data.username,
+    username: xss(data.username),
     score: sess.score
   })
   entry.save((err, response) => {
