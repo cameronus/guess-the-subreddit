@@ -9,15 +9,15 @@
   "author": "Cameron Jones",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "connect-mongo": "^2.0.0",
-    "express": "^4.16.2",
+    "body-parser": "^1.18.3",
+    "connect-mongo": "^2.0.1",
+    "express": "^4.16.3",
     "express-session": "^1.15.6",
-    "greenlock-express": "^2.0.12",
-    "mongoose": "^4.10.8",
+    "greenlock-express": "^2.1.6",
+    "mongoose": "^4.13.14",
     "mongoose-random": "^0.1.1",
-    "request": "^2.83.0",
-    "uuid": "^3.1.0",
-    "xss": "^0.3.7"
+    "request": "^2.87.0",
+    "uuid": "^3.2.1",
+    "xss": "^0.3.8"
   }
 }
